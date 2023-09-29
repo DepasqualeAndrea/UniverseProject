@@ -16,7 +16,7 @@ public class CloudinaryService implements CloudinaryImageService {
 	@Autowired
 	private Cloudinary cloudinary;
 
-	@SuppressWarnings("rawtypes")
+
 	@Override
 	public Map upload(MultipartFile file) {
 

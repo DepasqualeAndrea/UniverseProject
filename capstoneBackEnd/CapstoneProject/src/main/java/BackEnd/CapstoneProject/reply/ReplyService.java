@@ -34,7 +34,7 @@ public class ReplyService {
 		this.commentRepo = commentRepo;
 		this.replyRepo = replyRepo;
 	}
-
+	@Transactional
 	public Reply createReply(UUID commentId, Reply body) {
 		User user = userService.getCurrentUser();
 		UUID userId = user.getUserId();
@@ -48,7 +48,7 @@ public class ReplyService {
 		reply.setComment(comment);
 		return replyRepo.save(reply);
 	}
-
+	@Transactional
 	public List<ReplyDTO> getRepliesByCommentId(UUID commentId) {
 		List<Reply> replies = replyRepo.findAllByCommentCommentId(commentId);
 

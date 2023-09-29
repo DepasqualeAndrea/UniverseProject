@@ -11,7 +11,6 @@ import com.cloudinary.Cloudinary;
 @Configuration
 public class CloudConfig {
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Bean
 	public Cloudinary getCloudinary() {
 

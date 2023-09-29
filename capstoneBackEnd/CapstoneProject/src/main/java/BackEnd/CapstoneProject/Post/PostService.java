@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,7 @@ import BackEnd.CapstoneProject.comments.CommentRepo;
 import jakarta.transaction.Transactional;
 
 @Service
+@Lazy
 public class PostService {
 	private final PostRepository postRepo;
 	private final UserService userService;
@@ -49,9 +51,7 @@ public class PostService {
 		if (image.isEmpty()) {
 			throw new IllegalArgumentException("Le immagini non sono state fornite.");
 		}
-		postRepo.findByDescription(body.getDescription()).ifPresent(u -> {
-			throw new BadRequestException("Il post é gia Esistente!");
-		});
+
 		String imageUrl = cloudinaryService.uploadImage(image);
 
 		Post post = new Post();
