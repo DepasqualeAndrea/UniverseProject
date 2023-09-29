@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { Observable, map, take } from 'rxjs';
 import { AuthService } from './auth.service';
+import { Token } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class GuardGuard implements CanActivate {
       return this.authService.user$.pipe(
           take(1),
           map((user) => {
-              if (user) {
+              if (Token) {
                   return true;
               }
               alert(

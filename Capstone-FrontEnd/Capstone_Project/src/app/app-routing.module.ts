@@ -15,14 +15,14 @@ const routes: Routes = [
   },
   {
     path: 'home', component: HomePagComponent,
-    //canActivate: [GuardGuard]
+    canActivate: [GuardGuard]
   },
   {
     path: 'user', component: UserProfileComponent,
-    //canActivate: [GuardGuard]
+    canActivate: [GuardGuard]
   }, {
     path: 'userInfo/:userId', component: UserinfoComponent,
-    //canActivate: [GuardGuard]
+    canActivate: [GuardGuard]
   }
 ];
 

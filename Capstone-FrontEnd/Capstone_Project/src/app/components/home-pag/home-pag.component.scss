@@ -345,6 +345,10 @@ hr {
   overflow: hidden;
   position: relative;
   width: 700px;
+  -webkit-box-shadow: inset 5px 6px 31px -26px #7FFFD4,1px 11px 9px 1px #7FFFD4;
+  -moz-box-shadow: inset 5px 6px 31px -26px #7FFFD4,1px 11px 9px 1px #7FFFD4;
+  -o-box-shadow: inset 5px 6px 31px -26px #7FFFD4,1px 11px 9px 1px #7FFFD4;
+  box-shadow: inset 5px 6px 31px -26px #7FFFD4,1px 11px 9px 1px #7FFFD4;
 }
 
 .slider::before, .slider::after {
@@ -381,6 +385,7 @@ hr {
 .slider .slide {
   height: 250px;
   width: 250px;
+  padding: 5px;
 }
 
 @keyframes scroll {
@@ -392,7 +397,22 @@ hr {
   }
 }
 
+.suggeriti{
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 600;
+  font-size: 1.2em;
+  color: #7FFFD4;
+}
+
 @media screen and (max-width: 4000px) {
+  .slider {
+    background: transparent;
+    height: 150px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 700px;
+  }
   .social-card {
     background: #1b1e25;
     border: 1px solid #f2f2f2;
@@ -418,6 +438,14 @@ hr {
 
 
 @media screen and (max-width: 1400px) {
+  .slider {
+    background: transparent;
+    height: 150px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    max-width: 600px;
+  }
 
   .social-card {
     background: #1b1e25;
@@ -442,6 +470,20 @@ hr {
 }
 
 @media screen and (max-width: 1098px) {
+  .slider {
+    background: transparent;
+    height: 150px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 500px;
+  }
+  .slider .slide-track {
+    animation: scroll 90s linear infinite;
+    display: flex;
+    width: calc(60px * 14);
+    transition: animation-play-state 0.5s;
+  }
   .contenitore-responsive{
     display: flex;
     justify-content: center;
@@ -467,7 +509,34 @@ hr {
     align-items: center;
   }
 }
-@media screen and (max-width: 598px) {
+@media screen and (max-width: 580px) {
+  .slider {
+    background: transparent;
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 400px;
+  }
+  .social-card-user-image-carousel{
+    padding: 3px;
+    width: 50px;
+    height: 50px;
+  }
+  .slider .slide {
+    height: 150px;
+    width: 150px;
+    padding: 8px;
+  }
+  .slider .slide-track {
+    animation: scroll 90s linear infinite;
+    display: flex;
+    width: calc(40px * 14);
+    transition: animation-play-state 0.5s;
+  }
+  .btn-success{
+    display: none !important;
+  }
   .social-card {
     background: #1b1e25;
     border: 1px solid #f2f2f2;
@@ -491,6 +560,23 @@ hr {
   }
 }
 @media screen and (max-width: 438px) {
+
+  .slider {
+    background: transparent;
+    height: 100px;
+    margin: auto;
+    overflow: hidden;
+    position: relative;
+    width: 340px;
+  }
+  .slider .slide {
+    height: 80px;
+    width: 80px;
+    padding: 8px;
+  }
+  .btn-success{
+    display: none !important;
+  }
   .contenitore-responsive{
     display: flex;
     justify-content: center;

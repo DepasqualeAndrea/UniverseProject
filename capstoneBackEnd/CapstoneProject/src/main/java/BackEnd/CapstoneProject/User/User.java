@@ -97,6 +97,7 @@ public class User implements UserDetails {
 	private Set<User> following = new HashSet<>();
 
 	@ManyToMany(mappedBy = "following")
+	@JsonIgnore
 	private Set<User> followers = new HashSet<>();
 
 	public User(String nome, String cognome, String username, String email, String password, Ruolo role,
