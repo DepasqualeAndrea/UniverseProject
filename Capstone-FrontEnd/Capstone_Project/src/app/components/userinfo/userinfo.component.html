@@ -1,0 +1,77 @@
+<app-modal *ngIf="modal.showModal" (closeModalEvent)="closeModal()" [selectedPostId]="selectedPostId"></app-modal>
+<app-nav></app-nav>
+<div class="container d-flex justify-content-center">
+  <div class="wrapper">
+    <div class="profile-card js-profile-card">
+      <div class="d-flex justify-content-center align-items-center profile-card__container">
+        <div class="profile-card__img">
+          <img [src]="User?.profileImageUrl" alt="profile card">
+        </div>
+        <div class="profile-card__cnt js-profile-cnt">
+          <div class="profile-card__name">{{User?.nome}} {{User?.cognome}}</div>
+          <div class="profile-card__name mb-3">@{{User?.username}}</div>
+          <div class="profile-card__txt"><strong>voglio vivere con il sole in fronte </strong></div>
+          <div class="profile-card-loc">
+            <span class="profile-card-loc__txt">
+              ciao
+            </span>
+          </div>
+          <div class="profile-card-ctr" >
+            <button class="profile-card__button button--orange"*ngIf="currentUser" (click)="toggleFollowing(User?.userId, currentUser?.userId)">Follow</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-card-message js-message">
+        <form class="profile-card-form">
+          <div class="profile-card-form__container">
+            <textarea placeholder="Say something..."></textarea>
+          </div>
+
+          <div class="profile-card-form__bottom">
+            <button class="profile-card__button button--blue js-message-close">
+              Send
+            </button>
+
+            <button class="profile-card__button button--gray js-message-close">
+              Cancel
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid d-flex flex-column justify-content-center">
+  <div class="profile-card-inf">
+    <div class="profile-card-inf__item" *ngFor="let userPost of userPosts; let i = index">
+      <div class="profile-card-inf__title">{{ userPosts[i].followers }}</div>
+      <div class="profile-card-inf__txt">Followers</div>
+    </div>
+
+    <!--<div class="profile-card-inf__item">
+      <div class="profile-card-inf__title">65</div>
+      <div class="profile-card-inf__txt">Following</div>
+    </div>-->
+    <div class="profile-card-inf__item">
+      <div class="profile-card-inf__title"></div><!--{{userPosts[i].posts}}-->
+      <div class="profile-card-inf__txt">Posts</div>
+    </div>
+
+    <div class="profile-card-inf__item">
+      <div class="profile-card-inf__title">85</div>
+      <div class="profile-card-inf__txt">Likes</div>
+    </div>
+  </div>
+  <hr class="container">
+
+  <div class="feed-home-page d-flex flex-wrap container gap-3">
+    <div class="card-posts" *ngFor="let post of userPosts; let i = index">
+      <img src="{{post.postImageUrl}}" alt="">
+      <div class="overlay" (click)="openModal(post.postId, post.userId)"></div>
+      <button class="card-btn"><i class="bi bi-heart"></i></button>
+    </div>
+  </div>
+</div>
+

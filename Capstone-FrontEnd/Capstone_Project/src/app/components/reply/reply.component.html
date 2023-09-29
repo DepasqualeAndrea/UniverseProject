@@ -1,0 +1,40 @@
+<div id="overlay"></div>(click)="closeOnlySecondModal()"
+<div id="container" (click)="stopClickPropagation($event)">
+  <div class="replyComment d-flex justify-content-center align-items-center flex-column w-100 h-50">
+    <div class="comment-container theme--light">
+      <div class="comments">
+        <div>
+          <div class="card v-card v-sheet theme--light elevation-2">
+            <div  class="header d-flex flex-wrap justify-content-start align-items-center align-content-center  gap-1">
+              <div class="v-avatar avatar d-flex justify-content-center" style="height: 50px; width: 50px;"><img
+                  [src]="userInfo?.profileImageUrl">
+              </div>
+              <div>
+                <span class="displayName title">{{userInfo?.username}}</span> <span class="displayName caption">{{comment?.formattedDate}}</span>
+              </div>
+            </div>
+            <div class="wrapper comment">
+              <p>{{comment?.content}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <form #form="ngForm" class="text-light social-card-footer pt-0" (click)="stopClickPropagation($event)">
+        <div class="d-flex text-light justify-content-center align-items-baseline gap-3 mt-2">
+          <div>
+            <div class="inputbox">
+              <input type="text" name="content" id="content" [(ngModel)]="commentContent" required>
+              <span>Commenta</span>
+              <i></i>
+            </div>
+          </div>
+          <div>
+            <button type="submit" class="bi bi-send-fill btn p-2" [disabled]="!commentContent" (click)="postReply(this.selectedCommentId, form)"></button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>

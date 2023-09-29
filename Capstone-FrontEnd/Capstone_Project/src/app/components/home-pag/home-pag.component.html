@@ -1,0 +1,77 @@
+<app-modal *ngIf="modal.showModal" (closeModalEvent)="closeModal()" [selectedPostId]="selectedPostId"></app-modal>
+<app-nav></app-nav>
+<div class="feed container-fluid m-0 p-0">
+  <div class="d-flex justify-content-center">
+    <div class="contenitore-responsive mt-5 mb-5">
+      <div class="feed-home-page">
+        <form class="d-flex justify-content-center text-light mb-4" role="search">
+          <input class="form-control me-2 w-75 inpt" type="search" placeholder="Cerca utenti" aria-label="Search">
+        </form>
+        <div class="slider">
+          <div class="slide-track">
+            <div class="slide d-flex justify-content-start align-items-start flex-column w-100"
+            *ngFor="let users of suggestedUsers;">
+                <div class="d-flex justify-content-center align-items-center flex-column gap-1">
+                  <div [routerLink]="['/userInfo', users.userId]">
+                    <img src="{{users.profileImageUrl}}" alt="" class="social-card-user-image-carousel" />
+                  </div>
+                  <div [routerLink]="['/userInfo', users.userId]">
+                    <span class="bi">{{users.username}}</span>
+                  </div>
+                  <div>
+                    <a class="btn btn-success" (click)="toggleFollowing(users.userId, currentUser.userId)">Follow</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <div *ngFor="let post of homePosts; let i = index">
+          <div class="social-card mt-4 ">
+            <div>
+              <div class="social-card-header mb-5" [routerLink]="['/userInfo', post.userId]">
+                <img src="{{post.userImage}}" loading="lazy" class="social-card-user-image" />
+                <div class="overlay"></div>
+                <span class="social-card-user-name">{{post.username}}</span>
+              </div>
+
+              <div class="social-card-image">
+                <div class="feed-home-page d-flex flex-wrap container gap-3">
+                  <div class="card-posts">
+                    <img src="{{post.postImageUrl}}" alt="">
+                    <div class="overlay" (click)="openModal(post.postId, post.userId)"></div>
+                    <button class="card-btn"><i class="bi bi-heart" (click)="like(post.postId)"></i></button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="social-card-content pb-1">
+                <p class="likes text-light"><strong>{{post.likeCount}} like</strong></p>
+                <p class="text-light"><a class="social-card-content-user">{{post.username}}</a> {{post.description}}<a
+                    class="hashtag"></a></p>
+                <p class="comments" (click)="openModal(post.postId, post.userId)"><strong>Vedi tutti i
+                    {{post.comments.length}} Commenti</strong> </p>
+              </div>
+
+              <div class="w-100">
+                <form #form="ngForm" class="text-light social-card-footer pt-0">
+                  <div class="d-flex text-light justify-content-center align-items-baseline gap-3 mt-2">
+                    <div>
+                      <div class="inputbox">
+                        <input required="required" type="string" name="content" id="content" ngModel>
+                        <span>Commenta</span>
+                        <i></i>
+                      </div>
+                    </div>
+                    <div>
+                      <i type="submit" class="bi bi-send-fill btn p-2" (click)="postComment(post.postId, form)"></i>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

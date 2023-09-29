@@ -1,0 +1,63 @@
+<app-post-modal *ngIf="modal.showModal" (closeModalEvent)="closeModal()"></app-post-modal>
+
+<div class="navbar">
+  <div class="sidebar">
+    <ul class="container">
+      <div class="user-header" routerLinkActive [routerLink]="['/user']">
+        <li>
+          <div>
+            <img alt="alt" *ngIf="currentUser" src="{{currentUser.profileImageUrl}}" class="social-card-user-image" />
+          </div>
+          <div>
+            <p class="nav-text" *ngIf="currentUser">{{currentUser.username}}!</p>
+          </div>
+        </li>
+      </div>
+      <div class="sideIcon">
+        <li routerLinkActive [routerLink]="['/home']">
+          <a>
+            <i class="bi bi-house-heart"></i>
+            <span class="nav-text">Home</span>
+          </a>
+        </li>
+
+        <li class="has-subnav bisearch">
+          <a>
+            <i class="bi bi-search"></i>
+            <span class="nav-text">Search</span>
+          </a>
+        </li>
+
+        <li class="has-subnav">
+          <a>
+            <i class="bi bi-envelope-at"></i>
+            <span class="nav-text">Messages</span>
+          </a>
+        </li>
+
+        <li>
+          <a>
+            <i class="bi bi-heart"></i>
+            <span class="nav-text">Direct</span>
+          </a>
+        </li>
+
+        <li>
+          <a (click)="openModal()">
+            <i class="bi bi-plus-square"></i>
+            <span class="nav-text">Create</span>
+          </a>
+        </li>
+      </div>
+      <div class="logout">
+        <li (click)="logout()">
+          <a>
+            <i class="bi bi-power"></i>
+            <span class="nav-text">Logout</span>
+          </a>
+        </li>
+      </div>
+
+    </ul>
+  </div>
+</div>

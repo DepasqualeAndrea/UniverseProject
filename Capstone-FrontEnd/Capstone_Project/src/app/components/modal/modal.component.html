@@ -1,0 +1,95 @@
+
+<app-reply *ngIf="modal.showReplyModal" (click)="onSecondModalClose()"
+  [selectedCommentId]="selectedCommentId"></app-reply>
+<div id="overlay" (click)="closeModal()"></div>
+<div id="container">
+  <div class="commenti-nav container-fluid">
+    <div class="social-card" style="border: hidden;">
+      <div class="social-card-header">
+        <div>
+          <img [src]="userPostInfo?.profileImageUrl" class="social-card-user-image" loading="lazy" />
+          <a class="social-card-user-name" *ngIf="userPostInfo">{{userPostInfo?.username}}</a>
+        </div>
+        <div>
+          <div class="dropdown">
+            <button class="btn three-dots" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+              <i class="bi bi-three-dots"></i>
+            </button>
+            <ul class="dropdown-menu">
+              <li><button class="dropdown-item" type="button"><i class="bi bi-pencil-square me-2"></i>Edit</button></li>
+              <li><button class="dropdown-item" type="button"><i class="bi bi-trash3 me-2"></i>Delete</button></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr class="w-100">
+    <div class="d-flex justify-content-evenly align-items-center mt-3">
+      <div class="comments-container" id="commenti">
+        <ul id="comments-list" class="comments-list">
+          <ng-container *ngFor="let comment of postComments; let i = index">
+            <li>
+
+              <div class="comment-main-level d-flex justify-content-start align-items-start gap-4">
+                <div class="comment-avatar">
+                  <img [src]="userInfos[i]?.profileImageUrl" alt="">
+                </div>
+                <div class="comment-box">
+                  <div class="comment-head">
+                    <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{userInfos[i]?.username}}</a></h6>
+                    <span>{{comment.formattedDate}}</span>
+                    <i class="bi bi-reply" (click)="openModal(comment.commentId)"></i>
+                    <i class="bi bi-heart" (click)="likeComment(comment.commentId)">{{comment.likeCount}}</i>
+                  </div>
+                  <div class="comment-content">
+                    {{comment.content}}
+                  </div>
+                </div>
+              </div>
+              <ul class="comments-list reply-list">
+                <ng-container *ngFor="let reply of comment.replies">
+                  <li>
+                    <div class="d-flex justify-content-start align-items-start gap-3">
+                      <div class="comment-avatar">
+                        <img src="{{reply.userReplyImage}}" alt="">
+                      </div>
+                      <div class="comment-box">
+                        <div class="comment-head">
+                          <h6 class="comment-name by-author"><a href="http://creaticode.com/blog">{{reply.username}}</a></h6>
+                          <span>{{reply.formattedDate}}</span>
+                          <i class="bi bi-heart" (click)="likeReply(reply.replyId)">{{reply.likeCount}}</i>
+                        </div>
+                        <div class="comment-content">
+                          {{reply.content}}
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ng-container>
+              </ul>
+            </li>
+          </ng-container>
+        </ul>
+      </div>
+      <div class="d-flex justify-content-center align-content-center align-items-center ">
+        <img [src]="postInfo?.postImageUrl" alt="" width="600" class="image_modal">
+      </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-baseline gap-3 mt-2 fixed-bottom">
+      <form #form="ngForm" class="text-light social-card-footer pt-0">
+        <div class="d-flex text-light justify-content-center align-items-baseline gap-3 mt-2">
+          <div>
+            <div class="inputbox">
+              <input required type="text" name="content" id="content" [(ngModel)]="commentInput" #contentInput>
+              <span>Commenta</span>
+              <i></i>
+            </div>
+          </div>
+          <div>
+            <button type="button" class="bi bi-send-fill btn p-2" (click)="postComment(selectedPostId, form)" [disabled]="!commentInput"></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
