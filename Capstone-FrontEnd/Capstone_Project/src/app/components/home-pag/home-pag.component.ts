@@ -1,7 +1,6 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { Observable, forkJoin } from 'rxjs';
+import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 
 import { CrudService } from 'src/app/service/crud.service';
@@ -35,17 +34,6 @@ export class HomePagComponent implements OnInit {
   }
 
 
-  @HostListener('mouseenter')
-  onMouseEnter() {
-    this.isPaused = true;
-  }
-
-  @HostListener('mouseleave')
-  onMouseLeave() {
-    this.isPaused = false;
-  }
-
-
 
   searchQuery!: string;
   searchResults: any[] = [];
@@ -69,25 +57,26 @@ export class HomePagComponent implements OnInit {
   isPaused = false;
   userPostInfo: any[] = [];
   postImageUrl: any[] = [];
-  homePosts: any[] = [];
+  post: any[] = [];
   content: string = '';
   suggestedUsers: any[] = [];
   userDelays: number[] = [0, 1, 2, 3, 4];
   currentUser: any;
-
-
+  isCurrentUserPost: boolean = false;
+  currentUserId: any;
+  commentInput: string = '';
 
   constructor(private http: CrudService, private authService: AuthService) { }
 
 
   ngOnInit(): void {
     this.http.getAllUsersPosts().subscribe(posts => {
-      this.homePosts = posts.content;
-      const userIds = this.homePosts.map(post => post.userId);
+      this.post = posts.content;
+      const userIds = this.post.map(post => post.userId);
       const userObservables = userIds.map(userId => this.http.getUserById(userId));
 
       forkJoin(userObservables).subscribe(users => {
-        this.homePosts.forEach((post, index) => {
+        this.post.forEach((post, index) => {
           const user = users[index];
           post.userImage = user.profileImageUrl;
           post.username = user.username;
@@ -97,7 +86,9 @@ export class HomePagComponent implements OnInit {
     });
     this.loadSuggestedUsers();
     this.getCurrentUser();
+
   }
+
 
   getCurrentUser() {
     this.authService.getCurrentUserInfo().subscribe(users => {
@@ -141,7 +132,7 @@ export class HomePagComponent implements OnInit {
     );
   }
 
-  toggleFollowing(userId: number, userFollowedId: number){
+  toggleFollowing(userId: number, userFollowedId: number) {
     this.http.toggleFollowing(userFollowedId, userId).subscribe(
       (responseMessage: string) => {
         window.location.reload();
@@ -153,6 +144,16 @@ export class HomePagComponent implements OnInit {
     )
 
   }
+
+
+  editPost(postId: any) {
+
+  }
+
+  deletePost(postId: any) {
+
+  }
+
 
 
 

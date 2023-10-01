@@ -49,10 +49,10 @@ export class ModalComponent implements OnInit {
   reply: any[] = [];
   formattedDate: string = '';
   commentInput: string = '';
+  currentUser: any;
+  postUserIdVerify: any;
 
-
-
-  constructor(private http: CrudService) { }
+  constructor(private http: CrudService, private authService: AuthService) { }
 
   ngOnChanges(): void {
 
@@ -62,6 +62,7 @@ export class ModalComponent implements OnInit {
   ngOnInit(): void {
     this.sub! = this.http.getPostById(this.selectedPostId).subscribe((postInfo: any) => {
       this.postInfo = postInfo;
+      this.postUserIdVerify = postInfo
       if (this.postInfo) {
         this.http.getUserById(this.postInfo.userId).subscribe((userPostInfo: any) => {
           this.userPostInfo = userPostInfo;
@@ -101,6 +102,14 @@ export class ModalComponent implements OnInit {
         });
       });
     });
+    this.getCurrentUser();
+
+  }
+
+  getCurrentUser() {
+    this.authService.getCurrentUserInfo().subscribe(users => {
+      this.currentUser = users;
+    })
   }
 
   postComment(selectedPostId: number, form: NgForm) {
@@ -140,8 +149,6 @@ export class ModalComponent implements OnInit {
       }
     );
   }
-
-
 
 
 }

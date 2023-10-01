@@ -179,6 +179,8 @@ a {
 .social-card-header {
   padding: 20px;
   height: 40px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .social-card-user-image {

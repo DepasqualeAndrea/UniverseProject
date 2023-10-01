@@ -29,21 +29,11 @@ export class AuthService {
   }
 
   isLoggedIn() {
-    return !!this.token;
+    return !!this.getToken();
   }
 
   getCurrentUserInfo(): Observable<any> {
     return this.http.get<any[]>('http://localhost:3001/user/utente');
-  }
-
-  base64ToArrayBuffer(base64: string) {
-    const binaryString = window.atob(base64);
-    const binaryLen = binaryString.length;
-    const bytes = new Uint8Array(binaryLen);
-    for (let i = 0; i < binaryLen; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-    return bytes;
   }
 
   login(email: string, password: string): Observable<any> {

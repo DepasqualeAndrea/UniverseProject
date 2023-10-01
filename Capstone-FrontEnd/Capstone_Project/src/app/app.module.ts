@@ -26,7 +26,7 @@ import { UserinfoComponent } from './components/userinfo/userinfo.component';
     UserProfileComponent,
     PostModalComponent,
     ReplyComponent,
-    UserinfoComponent
+    UserinfoComponent,
   ],
   imports: [
     BrowserModule,
