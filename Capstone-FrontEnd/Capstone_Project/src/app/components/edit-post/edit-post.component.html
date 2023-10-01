@@ -1,0 +1,49 @@
+
+<div class="container">
+  <h3 class="text-center my-3 bi">Modifica La descrizione del tuo commento</h3>
+  <div class="social-card mt-4 ">
+    <div>
+      <div class="social-card-header mb-5">
+        <div [routerLink]="post?.userId === currentUser?.userId ? '/user' : ['/userInfo', post.userId]">
+          <img [src]="userPostInfo?.profileImageUrl" loading="lazy" class="social-card-user-image" />
+          <div class="overlay"></div>
+          <span class="social-card-user-name">{{userPostInfo?.username}}</span>
+        </div>
+      </div>
+      <div class="social-card-image">
+        <div class="feed-home-page d-flex flex-wrap container gap-3">
+          <div class="card-posts">
+            <img [src]="post?.postImageUrl" alt="">
+            <div class="overlay"></div>
+            <button class="card-btn"><i class="bi bi-heart"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="social-card-content pb-1 my-4">
+        <p class="text-light"><a class="social-card-content-user">Descrizione 🖊️.. &nbsp;</a>
+          {{post?.description}}<a class="hashtag"></a>
+        </p>
+      </div>
+    </div>
+  </div>
+    <div>
+      <form #form="ngForm" class="text-light social-card-footer pt-0">
+        <div class="d-flex text-light justify-content-center align-items-baseline gap-3 mt-2">
+          <div>
+            <div class="inputbox w-100">
+              <input type="text" name="description" id="description" ngModel required>
+              <span>Scrivi qui..</span>
+              <i></i>
+            </div>
+          </div>
+          <div>
+            <button type="submit" [disabled]="form.invalid" class="bi bi-send-fill btn p-2" (click)="modificaPost(form)">&nbsp;Conferma</button>
+          </div>
+          <div>
+            <button type="button" class="btn bi bi-door-closed p-2 border-1 mx-2" [routerLink]="['/home']">&nbsp;Annulla</button>
+          </div>
+        </div>
+      </form>
+    </div>
+</div>

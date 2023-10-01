@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import BackEnd.CapstoneProject.User.User;
 import BackEnd.CapstoneProject.User.UserService;
+import BackEnd.CapstoneProject.comments.Comment;
 
 @RestController
 @RequestMapping("/user/reply")
@@ -59,6 +60,12 @@ public class ReplyController {
 		replies.sort((r1, r2) -> r2.getDataCreazione().compareTo(r1.getDataCreazione()));
 
 		return replies;
+	}
+	
+	@GetMapping("/{repliesId}")
+	public ResponseEntity<Reply> getCommentById(@PathVariable UUID repliesId) {
+		Reply comment = replyService.getReplyById(repliesId);
+		return new ResponseEntity<>(comment, HttpStatus.OK);
 	}
 
 	@DeleteMapping("/{repliesId}")

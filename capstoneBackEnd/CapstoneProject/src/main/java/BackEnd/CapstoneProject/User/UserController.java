@@ -27,8 +27,7 @@ import BackEnd.CapstoneProject.Payload.UserRequestPayload;
 public class UserController {
 	@Autowired
 	private UserService userService;
-	@Autowired
-	private UserRepo userRepository;
+
 
 	@GetMapping
 	public User getCurrentUserWithDetails() {
@@ -43,10 +42,12 @@ public class UserController {
 	}
 
 	@GetMapping("/all")
-	public ResponseEntity<List<User>> getAllUsers() {
-		List<User> users = userRepository.findAllUsersWithDetails();
-		return ResponseEntity.ok(users);
+	public ResponseEntity<List<UserDto>> getAllUsers() {
+	    UUID currentUserId = userService.getCurrentUserId();
+	    List<UserDto> userDtos = userService.getAllUsersExcludingCurrentUser(currentUserId);
+	    return ResponseEntity.ok(userDtos);
 	}
+
 
 	@GetMapping("/followers")
 	public Set<User> getFollowers() {
@@ -59,20 +60,20 @@ public class UserController {
 	}
 
 	@GetMapping("/following")
-	public Set<User> getFollowing() {
-		User currentUser = getCurrentUserWithDetails();
-		return currentUser.getFollowing();
+	public ResponseEntity<Set<UserDto>> getFollowing() {
+	    UUID currentUserId = userService.getCurrentUserId();
+	    Set<UserDto> followingDtos = userService.getFollowingExcludingCurrentUser(currentUserId);
+	    return ResponseEntity.ok(followingDtos);
 	}
+
 
 	@GetMapping("/{userId}")
 	public ResponseEntity<?> findUtentiById(@PathVariable String userId) {
 		if (!UUIDValidator.isValidUUID(userId)) {
 			return ResponseEntity.badRequest().body("UUID non valido");
 		}
-
 		UUID uuid = UUID.fromString(userId);
 		User user = userService.findById(uuid);
-
 		if (user == null) {
 			return ResponseEntity.notFound().build();
 		}

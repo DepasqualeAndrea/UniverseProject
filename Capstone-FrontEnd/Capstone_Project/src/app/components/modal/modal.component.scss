@@ -1,11 +1,3 @@
-* {
-  margin: 0;
-  padding: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
 #overlay {
   position: fixed;
   top: 0px;
@@ -141,10 +133,10 @@
 
   }
 
-  /* Riduci progressivamente la larghezza dell'immagine */
+
   #container .image-modal {
     width: 40%;
-    /* Larghezza fissa ridotta */
+
   }
 }
 
@@ -373,6 +365,9 @@ ul {
 
 
 .comment-box .comment-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: #ffffff;
   padding: 12px;
   font-size: 15px;
@@ -399,6 +394,16 @@ ul {
   -moz-border-radius: 3px;
   border-radius: 3px;
 }
+
+.bi {
+  color: #03658c;
+  font-size: 1.3em;
+}
+.drowend{
+  position: absolute;
+  z-index: 10;
+}
+
 
 @media screen and (max-width: 1300px) {
   .image_modal {

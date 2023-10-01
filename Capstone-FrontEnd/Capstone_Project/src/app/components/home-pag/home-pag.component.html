@@ -14,7 +14,7 @@ app
             <div class="slide d-flex justify-content-start align-items-start flex-column w-100"
               *ngFor="let users of suggestedUsers;">
               <div class="d-flex justify-content-center align-items-center flex-column gap-1">
-                <div [routerLink]="['/userInfo', users.userId]">
+                <div>
                   <img src="{{users.profileImageUrl}}" alt="" class="social-card-user-image-carousel" />
                 </div>
                 <div [routerLink]="['/userInfo', users.userId]">
@@ -31,7 +31,7 @@ app
           <div class="social-card mt-4 ">
             <div>
               <div class="social-card-header mb-5">
-                <div [routerLink]="['/userInfo', post.userId]">
+                <div [routerLink]="post?.userId === currentUser?.userId ? '/user' : ['/userInfo', post.userId]">
                   <img src="{{post.userImage}}" loading="lazy" class="social-card-user-image" />
                   <div class="overlay"></div>
                   <span class="social-card-user-name">{{post.username}}</span>
@@ -42,13 +42,15 @@ app
                   </button>
                   <ul class="dropdown-menu">
                     <li *ngIf="currentUser?.userId === post?.userId">
-                      <button class="dropdown-item" type="button"><i class="bi bi-pencil-square me-2"></i>Edit</button>
+                      <button class="dropdown-item" type="button" [routerLink]="['/editPost', post.postId]"><i
+                          class="bi bi-pencil-square me-2"></i>Edit</button>
                     </li>
                     <li *ngIf="currentUser?.userId === post?.userId">
                       <button class="dropdown-item" type="button"><i class="bi bi-trash3 me-2"></i>Delete</button>
                     </li>
                     <li>
-                      <button class="dropdown-item" type="button"><i class="bi bi-bookmark me-2"></i>Aggiungi ai preferiti</button>
+                      <button class="dropdown-item" type="button"><i class="bi bi-bookmark me-2"></i>Aggiungi ai
+                        preferiti</button>
                     </li>
                   </ul>
                 </div>
@@ -65,8 +67,11 @@ app
 
               <div class="social-card-content pb-1">
                 <p class="likes text-light"><strong>{{post.likeCount}} like</strong></p>
-                <p class="text-light"><a class="social-card-content-user">{{post.username}}</a> {{post.description}}<a
-                    class="hashtag"></a></p>
+                <hr class="mb-2">
+                <p class="text-light"><a class="social-card-content-user">Descrizione 🖊️.. &nbsp;</a> &nbsp;
+                  {{post.description}}<a class="hashtag"></a>
+                </p>
+                <hr class="my-1">
                 <p class="comments" (click)="openModal(post.postId, post.userId)"><strong>Vedi tutti i
                     {{post.comments.length}} Commenti</strong> </p>
               </div>
@@ -76,13 +81,15 @@ app
                   <div class="d-flex text-light justify-content-center align-items-baseline gap-3 mt-2">
                     <div>
                       <div class="inputbox">
-                        <input required="required" type="string" name="content" id="content" ngModel  [(ngModel)]="commentInput" #contentInput>
+                        <input required="required" type="string" name="content" id="content" ngModel
+                          [(ngModel)]="commentInput" #contentInput>
                         <span>Commenta</span>
                         <i></i>
                       </div>
                     </div>
                     <div>
-                      <button type="submit" class="bi bi-send-fill btn p-2" (click)="postComment(post.postId, form)" [disabled]="!commentInput"></button>
+                      <button type="submit" class="bi bi-send-fill btn p-2" (click)="postComment(post.postId, form)"
+                        [disabled]="!commentInput"></button>
                     </div>
                   </div>
                 </form>

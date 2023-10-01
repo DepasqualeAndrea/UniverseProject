@@ -15,6 +15,8 @@ import { AuthService } from './auth/auth.service';
 import { PostModalComponent } from './components/post-modal/post-modal.component';
 import { ReplyComponent } from './components/reply/reply.component';
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { UserinfoComponent } from './components/userinfo/userinfo.component';
     PostModalComponent,
     ReplyComponent,
     UserinfoComponent,
+    EditPostComponent,
+    EditCommentComponent,
   ],
   imports: [
     BrowserModule,

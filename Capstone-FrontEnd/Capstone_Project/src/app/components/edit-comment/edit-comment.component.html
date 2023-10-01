@@ -1,5 +1,5 @@
 <div id="overlay"></div>
-<div id="container" (click)="stopClickPropagation($event)">
+<div id="container">
   <div class="replyComment d-flex justify-content-center align-items-center flex-column w-100 h-50">
     <div class="comment-container theme--light">
       <div class="comments">
@@ -21,7 +21,7 @@
       </div>
     </div>
     <div>
-      <form #form="ngForm" class="text-light social-card-footer pt-0" (click)="stopClickPropagation($event)">
+      <form #form="ngForm" class="text-light social-card-footer pt-0">
         <div class="d-flex text-light justify-content-center align-items-baseline gap-3 mt-2">
           <div>
             <div class="inputbox">
@@ -31,7 +31,7 @@
             </div>
           </div>
           <div>
-            <button type="submit" class="bi bi-send-fill btn p-2" [disabled]="!commentContent" (click)="postReply(this.selectedCommentId, form)"></button>
+            <button type="submit" class="bi bi-send-fill btn p-2" [disabled]="!commentContent" (click)="editComment(comment.commentId, form)"></button>
           </div>
         </div>
       </form>

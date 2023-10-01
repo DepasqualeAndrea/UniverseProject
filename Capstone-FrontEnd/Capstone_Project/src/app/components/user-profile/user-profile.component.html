@@ -67,7 +67,7 @@
     <div class="card-posts" *ngFor="let post of userPosts; let i = index">
       <img src="{{post.postImageUrl}}" alt="">
       <div class="overlay" (click)="openModal(post.postId, post.userId)"></div>
-      <button class="card-btn"><i class="bi bi-heart"></i></button>
+      <button class="card-btn" (click)="like(post.postId)"><i class="bi bi-heart"></i></button>
     </div>
   </div>
 </div>
@@ -87,7 +87,7 @@
               class="social-card-user-image" />
           </div>
           <div class="nome-User">
-            <p class="social-card-user-name m-0 ms-2" routerLinkActive [routerLink]="['/user']">{{user.username}}</p>
+            <p class="social-card-user-name m-0 ms-2" routerLinkActive>{{user.username}}</p>
           </div>
           <div class="isActive">
             <i class="bi bi-dot"></i>

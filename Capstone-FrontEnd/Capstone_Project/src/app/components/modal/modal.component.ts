@@ -24,6 +24,7 @@ export class ModalComponent implements OnInit {
     showReplyModal: false
   };
 
+
   openModal(commentId: number): void {
     setTimeout(() => {
       this.selectedCommentId = commentId;
@@ -51,6 +52,7 @@ export class ModalComponent implements OnInit {
   commentInput: string = '';
   currentUser: any;
   postUserIdVerify: any;
+
 
   constructor(private http: CrudService, private authService: AuthService) { }
 
@@ -84,14 +86,7 @@ export class ModalComponent implements OnInit {
 
         this.postComments.forEach(comment => {
           this.sub! = this.http.getRepliesByCommentId(comment.commentId).subscribe(replies => {
-
-            replies.forEach((reply: any) => {
-              reply.showReplyInput = false;
-              reply.replyContent = '';
-            });
-
             comment.replies = replies;
-            console.log(replies);
 
             replies.forEach((reply: { formattedDate: string; dataCreazione: string | number | Date; }) => {
               reply.formattedDate = format(new Date(reply.dataCreazione), 'dd MMM yyyy, HH:mm');
@@ -112,10 +107,10 @@ export class ModalComponent implements OnInit {
     })
   }
 
-  postComment(selectedPostId: number, form: NgForm) {
+  postComment(postId: number, form: NgForm) {
     const content = form.value.content;
     const requestBody = { content: content };
-    this.http.commentPost(this.selectedPostId, requestBody).subscribe(
+    this.http.commentPost(postId, requestBody).subscribe(
       (responseMessage: string) => {
         window.location.reload();
         console.log(responseMessage);

@@ -2,8 +2,13 @@ package BackEnd.CapstoneProject.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import org.springframework.context.annotation.Lazy;
 import org.springframework.security.core.Authentication;
@@ -132,5 +137,76 @@ public class UserService {
 
 		throw new NotFoundException("Utente non trovato");
 	}
+	@Transactional
+	public UUID getCurrentUserId() {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+	    Object principal = authentication.getPrincipal();
+
+	    if (principal instanceof User) {
+	        User user = (User) principal;
+	        return user.getUserId();
+	    }
+
+	    throw new NotFoundException("Utente non trovato");
+	}
+
+	
+	@Transactional
+	public List<UserDto> getAllUsersExcludingCurrentUser(UUID currentUserId) {
+	    User currentUser = getCurrentUser();
+	    List<UserDto> userDtos = new ArrayList<>();
+
+	    List<User> allUsers = userRepository.findAllUsersWithDetailsWithoutPosts();
+	    List<UUID> followingIds = currentUser.getFollowing().stream()
+	            .map(User::getUserId)
+	            .collect(Collectors.toList());
+
+	    for (User user : allUsers) {
+	        if (!user.getUserId().equals(currentUser.getUserId()) && !followingIds.contains(user.getUserId())) {
+	            UserDto userDto = new UserDto();
+	            userDto.setUserId(user.getUserId());
+	            userDto.setNome(user.getNome());
+	            userDto.setCognome(user.getCognome());
+	            userDto.setUsername(user.getUsername());
+	            userDto.setEmail(user.getEmail());
+	            userDto.setBio(user.getBio());
+	            userDto.setGenere(user.getGenere());
+	            userDto.setProfileImageUrl(user.getProfileImageUrl());
+
+	            userDtos.add(userDto);
+	        }
+	    }
+
+	    return userDtos;
+	}
+	
+	@Transactional
+	public Set<UserDto> getFollowingExcludingCurrentUser(UUID currentUserId) {
+	    User currentUser = getCurrentUser();
+	    Set<UserDto> followingDtos = new HashSet<>();
+
+	    Set<User> followingUsers = currentUser.getFollowing();
+
+	    for (User user : followingUsers) {
+	        if (!user.getUserId().equals(currentUser.getUserId())) {
+	        	UserDto userDto = new UserDto();
+	            userDto.setUserId(user.getUserId());
+	            userDto.setNome(user.getNome());
+	            userDto.setCognome(user.getCognome());
+	            userDto.setUsername(user.getUsername());
+	            userDto.setEmail(user.getEmail());
+	            userDto.setBio(user.getBio());
+	            userDto.setGenere(user.getGenere());
+	            userDto.setProfileImageUrl(user.getProfileImageUrl());
+
+	            followingDtos.add(userDto);
+	        }
+	    }
+
+	    return followingDtos;
+	}
+
+
+
 
 }

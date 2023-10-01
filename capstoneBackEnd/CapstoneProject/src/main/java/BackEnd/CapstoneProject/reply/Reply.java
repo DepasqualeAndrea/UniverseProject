@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import BackEnd.CapstoneProject.comments.Comment;
@@ -42,6 +43,7 @@ public class Reply {
 	private UUID usercommentId;
 
 	@ManyToOne
+	@JsonIgnore
 	private Comment comment;
 
 	@Column(name = "liked_Reply_by_users")

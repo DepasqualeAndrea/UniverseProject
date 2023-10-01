@@ -76,7 +76,7 @@ public class PostController {
 	}
 
 	@PutMapping("/{postId}")
-	public Post updatePosts(@PathVariable UUID postId, @RequestBody PostPayload body) {
+	public Post updatePosts(@PathVariable UUID postId, @ModelAttribute PostPayload body) {
 		return postService.findByIdAndUpdate(postId, body);
 	}
 

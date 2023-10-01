@@ -2,6 +2,7 @@ import { Component, Input, OnInit, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/interface/user.interface';
 
 import { CrudService } from 'src/app/service/crud.service';
 
@@ -99,7 +100,6 @@ export class HomePagComponent implements OnInit {
   loadSuggestedUsers(): void {
     this.http.getSuggestedUsers().subscribe(users => {
       this.suggestedUsers = users;
-      console.log(this.suggestedUsers);
     });
   }
 
@@ -146,13 +146,6 @@ export class HomePagComponent implements OnInit {
   }
 
 
-  editPost(postId: any) {
-
-  }
-
-  deletePost(postId: any) {
-
-  }
 
 
 

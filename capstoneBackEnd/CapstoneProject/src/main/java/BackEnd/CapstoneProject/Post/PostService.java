@@ -1,6 +1,7 @@
 package BackEnd.CapstoneProject.Post;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
@@ -111,6 +112,8 @@ public class PostService {
 	@Transactional
 	public Post findByIdAndUpdate(UUID id, PostPayload body) throws NotFoundException {
 		Post found = this.findById(id);
+		found.setDescription(body.getDescription());
+		found.setDatacreazione(LocalDateTime.now());
 		return postRepo.save(found);
 	}
 

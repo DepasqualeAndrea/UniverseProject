@@ -23,7 +23,7 @@ public interface UserRepo extends JpaRepository<User, UUID> {
 	List<User> findByPostsPostId(@Param("postId") UUID postId);
 
 	@Query("SELECT DISTINCT u FROM User u LEFT JOIN FETCH u.followers LEFT JOIN FETCH u.following")
-	List<User> findAllUsersWithDetails();
+	List<User> findAllUsersWithDetailsWithoutPosts();
 
 	void deleteByComment(Comment comment);
 

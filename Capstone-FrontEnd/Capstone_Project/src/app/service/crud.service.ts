@@ -22,9 +22,8 @@ export class CrudService {
   getPostById(postId: number): Observable<any> {
     return this.http.get<Post[]>(`${this.baseUrl}/post/${postId}`);
   }
-  //da usare⛔
-  modificaPost(data: Post, postId: String): Observable<any> {
-    return this.http.put<Post[]>(`${this.baseUrl}/post/${postId}`, data);
+  modificaPost(formData: FormData , postId: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/post/${postId}`, formData);
   }
 
   savePost(formData: FormData): Observable<any> {
@@ -41,17 +40,15 @@ export class CrudService {
   getCommentsByPostId(postId: number): Observable<any> {
     return this.http.get<Post[]>(`${this.baseUrl}/comment/getAllComments/${postId}`);
   }
-
-
   getCommentById(commentId: number): Observable<any> {
     return this.http.get<any[]>(`${this.baseUrl}/comment/${commentId}`);
   }
-
-
   getRepliesByCommentId(commentId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/reply/byComment/${commentId}`)
   }
-
+  getReplyById(replyId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/reply/${replyId}`)
+  }
   LikePost(postId: number): Observable<string> {
     const requestBody = { postId: postId };
     return this.http.post(`${this.baseUrl}/post/${postId}/togglelike`, requestBody, { responseType: 'text' });

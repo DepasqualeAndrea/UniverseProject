@@ -70,6 +70,19 @@ export class UserinfoComponent implements OnInit {
       }
     )
   }
+
+  like(postId: number) {
+    this.http.LikePost(postId).subscribe(
+      (responseMessage: string) => {
+        window.location.reload()
+        console.log(responseMessage);
+
+      },
+      (error) => {
+        console.error(error);
+      }
+    );
+  }
 }
 
 

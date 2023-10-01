@@ -5,6 +5,8 @@ import { HomePagComponent } from './components/home-pag/home-pag.component';
 import { GuardGuard } from './auth/guard.guard';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { UserinfoComponent } from './components/userinfo/userinfo.component';
+import { EditPostComponent } from './components/edit-post/edit-post.component';
+import { EditCommentComponent } from './components/edit-comment/edit-comment.component';
 
 const routes: Routes = [
   {
@@ -20,10 +22,20 @@ const routes: Routes = [
   {
     path: 'user', component: UserProfileComponent,
     canActivate: [GuardGuard]
-  }, {
+  },
+  {
     path: 'userInfo/:userId', component: UserinfoComponent,
     canActivate: [GuardGuard]
+  },
+  {
+    path: 'editPost/:postId', component: EditPostComponent,
+    canActivate: [GuardGuard]
+  },
+  {
+    path: 'editComment/:commentId', component: EditCommentComponent,
+    canActivate: [GuardGuard]
   }
+
 ];
 
 @NgModule({
