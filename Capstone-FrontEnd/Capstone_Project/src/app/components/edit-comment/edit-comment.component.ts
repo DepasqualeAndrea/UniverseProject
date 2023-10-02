@@ -35,44 +35,50 @@ export class EditCommentComponent implements OnInit {
   replyId: number | any;
   comment: any;
   userInfo: any;
+  formattedDate: string = '';
 
 
-  constructor(private http: CrudService, private router: Router,private route: ActivatedRoute, private authService: AuthService) { }
+  constructor(private http: CrudService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
-  ngOnInit(): void {
-    this.route.paramMap.pipe(
-      switchMap(params => {
-        this.commentId = params.get('commentId');
-        // Verifica il valore di commentId e decide quale chiamata HTTP eseguire
-        if (this.commentId) {
-          return this.http.getCommentById(this.commentId).pipe(
-            switchMap(comment => {
-              this.comment = comment;
-              const userId = this.comment.usercommentId;
-              return this.http.getUserById(userId);
-            })
-          );
-        } else {
-          return this.http.getReplyById(this.commentId).pipe(
-            switchMap(reply => {
-              this.comment = reply;
-              const userReplyId = this.comment.usercommentId;
-              return this.http.getUserById(userReplyId);
-            })
-          );
-        }
-      })
-    ).subscribe(user => {
-      if (user) {
-        this.userInfo = user;
-        this.comment.formattedDate = format(new Date(this.comment.dataCreazione), 'dd MMM yyyy, HH:mm');
+  ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.commentId = params.get('commentId');
+      console.log(this.commentId);
+      this.replyId = params.get('replyId');
+
+      if (this.commentId) {
+        this.handleCommentId();
+      } else if (this.replyId) {
+        this.handleReplyId();
       } else {
-        // Gestisci il caso predefinito o fai qualcosa se l'Observable è vuoto
+        console.error('Nessun parametro definito');
       }
-    });
+    })
 
-    // Altri codici comuni
-    this.getCurrentUser();
+    this.getCurrentUser()
+  }
+
+
+
+  private handleCommentId() {
+    this.http.getCommentById(this.commentId).subscribe((comment: any) => {
+      this.comment = comment;
+      this.comment.formattedDate = format(new Date(this.comment.dataCreazione), 'dd MMM yyyy, HH:mm');
+      this.sub! = this.http.getUserById(this.comment.usercommentId).subscribe((userPostInfo: any) => {
+        this.userInfo = userPostInfo;
+      });
+    });
+  }
+
+  private handleReplyId() {
+    this.http.getReplyById(this.replyId).subscribe(reply => {
+      this.comment = reply;
+      this.comment.formattedDate = format(new Date(this.comment.dataCreazione), 'dd MMM yyyy, HH:mm');
+      this.sub! = this.http.getUserById(this.comment.usercommentId).subscribe((userPostInfo: any) => {
+        this.userInfo = userPostInfo;
+      });
+
+    });
   }
 
   getCurrentUser() {
@@ -81,21 +87,53 @@ export class EditCommentComponent implements OnInit {
     })
   }
 
-
-  editComment(commentId: number, form: NgForm) {
+  edit(commentId: number, replyId: number, form: NgForm) {
     const content = form.value.content;
     const requestBody = { content: content };
-    this.http.commentReply(commentId, requestBody).subscribe(
+
+    if (commentId) {
+      this.http.updateComment(commentId, requestBody).subscribe(
+        (responseMessage: string) => {
+          alert('Commento Modificato ✅')
+          window.location.reload();
+
+        },
+        (error) => {
+          console.error(error);
+          alert('Non è stato possibile modificare il commento da te selezionato')
+        }
+      );
+    } else if (replyId) {
+
+      this.http.updateReply(replyId, requestBody).subscribe(
+        (responseMessage: string) => {
+          alert('Commento Modificato ✅')
+          window.location.reload();
+
+        },
+        (error) => {
+          console.error(error);
+          alert('Non è stato possibile modificare il commento da te selezionato')
+        }
+      )
+    }
+  }
+  editReply(replyId: number, form: NgForm) {
+    const content = form.value.content;
+    const requestBody = { content: content };
+    this.http.updateReply(replyId, requestBody).subscribe(
       (responseMessage: string) => {
         alert('Commento Modificato ✅')
         window.location.reload();
-        //console.log(responseMessage);
+
       },
       (error) => {
         console.error(error);
         alert('Non è stato possibile modificare il commento da te selezionato')
       }
-    );
+    )
   }
+
+
 }
 

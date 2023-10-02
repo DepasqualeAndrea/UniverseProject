@@ -144,8 +144,10 @@ public class CommentService {
 		return commentRepo.findById(id).orElseThrow(() -> new NotFoundException(id));
 	}
 
-	public Comment findByIdAndUpdate(UUID id, PostPayload body) throws NotFoundException {
+	public Comment findByIdAndUpdate(UUID id, CommentPayload body) throws NotFoundException {
 		Comment found = this.findById(id);
+		found.setContent(body.getContent());
+		found.setDataCreazione(LocalDateTime.now());
 		return commentRepo.save(found);
 	}
 

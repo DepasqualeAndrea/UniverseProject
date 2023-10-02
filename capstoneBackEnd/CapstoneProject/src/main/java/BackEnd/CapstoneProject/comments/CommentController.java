@@ -10,8 +10,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -46,7 +48,6 @@ public class CommentController {
 
 	@PostMapping("/{postId}/create")
 	public ResponseEntity<String> createComment(@PathVariable UUID postId, @RequestBody CommentPayload body) {
-		@SuppressWarnings("unused")
 		Comment comment = commentService.salvaCommento(postId, body);
 		String successMessage = "Commento creato con successo";
 		return ResponseEntity.status(HttpStatus.CREATED).body(successMessage);
@@ -69,6 +70,22 @@ public class CommentController {
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(responseMessage);
 	}
+	
+	
+	@PutMapping("/update/{commentId}")
+	public ResponseEntity<String> updateComment(@PathVariable UUID commentId, @RequestBody CommentPayload body){
+		Comment comment = commentService.findByIdAndUpdate(commentId, body);
+		String responseMessage;
+		
+		if(comment != null) {
+			responseMessage = "Commento Modificato con Successo";
+		}else {
+			responseMessage = "Non è stato possibile Modificare il commento corrente";
+		}
+		
+		return ResponseEntity.status(HttpStatus.CREATED).body(responseMessage);
+	}
+	
 
 	@DeleteMapping("/{commentId}")
 	public ResponseEntity<?> deleteComment(@PathVariable UUID commentId) {

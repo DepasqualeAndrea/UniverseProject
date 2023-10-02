@@ -31,7 +31,10 @@
             </div>
           </div>
           <div>
-            <button type="submit" class="bi bi-send-fill btn p-2" [disabled]="!commentContent" (click)="editComment(comment.commentId, form)"></button>
+            <button type="submit" class="bi bi-send-fill btn p-2" [disabled]="!commentContent" (click)="edit(comment.commentId, comment.repliesId, form)"></button>
+          </div>
+          <div>
+            <button type="button" class="btn bi bi-door-closed p-2 border-1 mx-2" [routerLink]="['/home']">&nbsp;Annulla</button>
           </div>
         </div>
       </form>

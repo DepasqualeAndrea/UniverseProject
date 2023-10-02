@@ -28,7 +28,6 @@ export class ModalComponent implements OnInit {
   openModal(commentId: number): void {
     setTimeout(() => {
       this.selectedCommentId = commentId;
-      console.log(this.selectedCommentId);
       this.modal.showReplyModal = true;
     }, 200)
   }
@@ -87,7 +86,6 @@ export class ModalComponent implements OnInit {
         this.postComments.forEach(comment => {
           this.sub! = this.http.getRepliesByCommentId(comment.commentId).subscribe(replies => {
             comment.replies = replies;
-
             replies.forEach((reply: { formattedDate: string; dataCreazione: string | number | Date; }) => {
               reply.formattedDate = format(new Date(reply.dataCreazione), 'dd MMM yyyy, HH:mm');
 
@@ -143,6 +141,26 @@ export class ModalComponent implements OnInit {
         console.error(error);
       }
     );
+  }
+
+  deleteReply(repliesId: number){
+    const conferma = window.confirm('Sei sicuro di voler eliminare questo Commento?');
+    this.http.deleteReply(repliesId).subscribe()
+    alert('Commento eliminato ora puoi tornare alla home');
+    window.location.reload();
+  }
+
+  deleteComment(commentId: number){
+    const conferma = window.confirm('Sei sicuro di voler eliminare questo Commento? \n cosi facendo perderai tutte le risposte ricevute');
+    this.http.deleteComment(commentId).subscribe()
+    alert('Commento eliminato ora puoi tornare alla home');
+    window.location.reload();
+  }
+  deletePost(postId: number){
+    const conferma = window.confirm('Vuoi eliminare questo Post? \n tutti i dati andranno persi');
+    this.http.deletePost(postId).subscribe()
+    alert('Post eliminato ora puoi tornare alla home');
+    window.location.reload();
   }
 
 

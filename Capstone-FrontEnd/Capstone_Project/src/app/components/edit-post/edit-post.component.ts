@@ -19,7 +19,7 @@ export class EditPostComponent implements OnInit {
   sub!: Subscription;
   userInfo: any;
   postId!: number | any;
-  post: any;
+  post: any = {};
   userPostInfo: any;
   currentUser: any;
 
@@ -50,31 +50,25 @@ export class EditPostComponent implements OnInit {
   }
 
   modificaPost(form: NgForm): void {
-    if (form.invalid) {
-      return;
-    }
+
     const conferma = window.confirm('Rendere Definitive Le modifiche del Post?');
-    if (conferma) {
-      const formData = new FormData();
-      formData.append('description', form.value.description);
-      this.http.modificaPost(formData, this.postId).subscribe(
-        (response: any) => {
-          console.log('Post Modificato Correttamente', response);
-          alert('Perfetto ora puoi tornare alla home');
-          this.router.navigate(['/home']);
-        },
-        (error: any) => {
-          console.error('Errore durante la pubblicazione del Post', error);
-        }
-      );
-    }
+    const formData = new FormData();
+    formData.append('description', form.value.description);
+
+    this.http.modificaPost(formData, this.postId).subscribe(
+      (response: any) => {
+        console.log('Post Modificato Correttamente', response);
+        alert('Perfetto ora puoi tornare alla home');
+        this.router.navigate(['/home']);
+      },
+      (error: any) => {
+        console.error('Errore durante la pubblicazione del Post', error);
+      }
+    );
   }
 
 
-
-
-
-
-
-
 }
+
+
+

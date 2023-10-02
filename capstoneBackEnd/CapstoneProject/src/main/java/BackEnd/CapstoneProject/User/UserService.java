@@ -2,6 +2,7 @@ package BackEnd.CapstoneProject.User;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -20,6 +21,8 @@ import BackEnd.CapstoneProject.Cloudinary.CloudinaryService;
 import BackEnd.CapstoneProject.Exception.NotFoundException;
 import BackEnd.CapstoneProject.Exception.UserNotFoundException;
 import BackEnd.CapstoneProject.Payload.UserRequestPayload;
+import BackEnd.CapstoneProject.reply.Reply;
+import BackEnd.CapstoneProject.reply.ReplyDTO;
 import jakarta.transaction.Transactional;
 
 @Service
@@ -49,7 +52,7 @@ public class UserService {
 		user.setEmail(registrationDTO.getEmail());
 		user.setPassword(registrationDTO.getPassword());
 		user.setRole(Ruolo.USER);
-		user.setDataRegistrazione(LocalDate.now());
+		user.setDataRegistrazione(LocalDateTime.now());
 		user.setProfileImageUrl(imageUrl);
 
 		return userRepository.save(user);
@@ -61,18 +64,40 @@ public class UserService {
 	}
 
 	@Transactional
-	public User findByIdAndUpdate(UUID id, UserRequestPayload body) throws NotFoundException {
-		User found = this.findById(id);
-		found.setNome(body.getNome());
-		found.setCognome(body.getCognome());
-		found.setUsername(body.getUsername());
-		found.setEmail(body.getEmail());
-		found.setPassword(body.getPassword());
-		found.setBio(body.getBio());
-		found.setCitta(body.getCitta());
-		found.setDataDiNascita(body.getDataDiNascita());
-		return userRepository.save(found);
+	public User findByIdAndUpdate(UUID id, UserRequestPayload body, MultipartFile image) throws NotFoundException, IOException {
+	    User found = this.findById(id);
+
+	    if (body.getNome() != null) {
+	        found.setNome(body.getNome());
+	    }
+	    if (body.getCognome() != null) {
+	        found.setCognome(body.getCognome());
+	    }
+	    if (body.getUsername() != null) {
+	        found.setUsername(body.getUsername());
+	    }
+	    if (body.getBio() != null) {
+	        found.setBio(body.getBio());
+	    }
+	    if (body.getCitta() != null) {
+	        found.setCitta(body.getCitta());
+	    }
+	    if (body.getDataDiNascita() != null) {
+	        found.setDataDiNascita(body.getDataDiNascita());
+	    }
+	    if(body.getGenere() != null) {
+	    	found.setGenere(body.getGenere());
+	    }
+	    found.setDataUltimeModifiche(LocalDateTime.now());
+
+	    if (image != null) {
+	        String imageUrl = cloudinaryService.uploadImage(image);
+	        found.setProfileImageUrl(imageUrl);
+	    }
+
+	    return userRepository.save(found);
 	}
+
 
 	public void toggleFollow(UUID followerId, UUID followingId) {
 		User follower = userRepository.findById(followerId)
@@ -107,6 +132,7 @@ public class UserService {
 		User found = this.findById(id);
 		userRepository.delete(found);
 	}
+	
 
 	@Transactional
 	public User findByEmail(String email) {

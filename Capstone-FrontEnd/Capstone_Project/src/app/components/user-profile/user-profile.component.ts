@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
@@ -31,12 +32,18 @@ export class UserProfileComponent implements OnInit {
   closeModal() {
     this.modal.showModal = false;
   }
-  sub! : Subscription
+
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
+  }
+  selectedFile: File | null = null;
+  sub!: Subscription
   followingsUsers: any[] = [];;
-  currentUser: any;
+  currentUser: any={};
   userPosts: any[] = [];
 
-  constructor(private http: CrudService, private authService: AuthService, ) { }
+  constructor(private http: CrudService, private authService: AuthService,) { }
 
   ngOnInit(): void {
 
@@ -47,10 +54,11 @@ export class UserProfileComponent implements OnInit {
 
     this.authService.getCurrentUserInfo().subscribe(userInfo => {
       this.currentUser = userInfo;
+      console.log(this.currentUser)
       for (let i = 0; i < this.currentUser.posts.length; i++) {
-          const posts = this.currentUser.posts[i]
-          this.userPosts.push(posts)
-        };
+        const posts = this.currentUser.posts[i]
+        this.userPosts.push(posts)
+      };
 
     });
   }
@@ -67,4 +75,39 @@ export class UserProfileComponent implements OnInit {
       }
     );
   }
+
+  updateUser(form: NgForm): void {
+    if (form.invalid) {
+      return;
+    }
+
+    const formData = new FormData();
+    if (this.selectedFile) {
+      formData.append('image', this.selectedFile);
+    }
+    formData.append('nome', form.value.nome);
+    formData.append('cognome', form.value.cognome);
+    formData.append('username', form.value.username);
+    formData.append('bio', form.value.bio);
+    formData.append('genere', form.value.genere);
+    formData.append('citta', form.value.citta);
+    formData.append('dataDiNascita', form.value.dataDiNascita);
+      this.http.updateUser(this.currentUser.userId, formData).subscribe(
+        (response) => {
+          console.log('Profilo Modificato Correttamente', response);
+          alert('Profilo Modificato Con Successo');
+          window.location.reload();
+        },
+        (error) => {
+          console.error('Errore durante le modifiche del profilo', error);
+        }
+      );
+
+  }
+
+
+
+
+
+
 }

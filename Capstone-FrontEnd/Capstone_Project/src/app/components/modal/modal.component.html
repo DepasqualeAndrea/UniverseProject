@@ -5,7 +5,8 @@
   <div class="commenti-nav container-fluid">
     <div class="social-card" style="border: hidden;">
       <div class="social-card-header">
-        <div [routerLink]="userPostInfo?.userId === currentUser?.userId ? '/user' : ['/userInfo', userPostInfo?.userId]">
+        <div
+          [routerLink]="userPostInfo?.userId === currentUser?.userId ? '/user' : ['/userInfo', userPostInfo?.userId]">
           <img [src]="userPostInfo?.profileImageUrl" class="social-card-user-image" loading="lazy" />
           <a class="social-card-user-name" *ngIf="userPostInfo">{{userPostInfo?.username}}</a>
         </div>
@@ -21,7 +22,7 @@
                 </button>
               </li>
               <li *ngIf="currentUser?.userId === postUserIdVerify?.userId">
-                <button class="dropdown-item p-1" type="button">
+                <button class="dropdown-item p-1" type="button" (click)="deletePost(this.selectedPostId)">
                   <i class="bi bi-trash3 mx-2 p-1"></i>Delete
                 </button>
               </li>
@@ -65,11 +66,12 @@
                       </button>
                       <ul class="dropdown-menu">
                         <p>
-                          <button class="dropdown-item p-2" type="button"  [routerLink]="['/editComment', comment.commentId]"><i
+                          <button class="dropdown-item p-2" type="button"
+                            [routerLink]="['/editComment', { commentId: comment.commentId }]"><i
                               class="bi bi-pencil-square mx-2 p-2 my-2"></i>Edit</button>
                         </p>
                         <p>
-                          <button class="dropdown-item p-2" type="button"><i
+                          <button class="dropdown-item p-2" type="button" (click)="deleteComment(comment.commentId)"><i
                               class="bi bi-trash3 mx-2 my-2 p-2"></i>Delete</button>
                         </p>
                       </ul>
@@ -102,11 +104,12 @@
                             </button>
                             <ul class="dropdown-menu">
                               <p>
-                                <button class="dropdown-item p-2" type="button" [routerLink]="['/editComment', reply.replyId]"><i
+                                <button class="dropdown-item p-2" type="button"
+                                  [routerLink]="['/editComment', {replyId: reply.replyId }]"><i
                                     class="bi bi-pencil-square mx-2 p-2 my-2"></i>Edit</button>
                               </p>
                               <p>
-                                <button class="dropdown-item p-2" type="button"><i
+                                <button class="dropdown-item p-2" type="button" (click)="deleteReply(reply.replyId)"><i
                                     class="bi bi-trash3 mx-2 my-2 p-2"></i>Delete</button>
                               </p>
                             </ul>
@@ -145,4 +148,3 @@
     </div>
   </div>
 </div>
-

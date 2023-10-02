@@ -32,8 +32,25 @@ const routes: Routes = [
     canActivate: [GuardGuard]
   },
   {
-    path: 'editComment/:commentId', component: EditCommentComponent,
-    canActivate: [GuardGuard]
+    path: 'editComment',
+    component: EditCommentComponent,
+    canActivate: [GuardGuard],
+    pathMatch: 'full',
+    children: [
+      {
+        path: '',
+        component: EditCommentComponent,
+        pathMatch: 'full'
+      },
+      {
+        path: ':commentId',
+        component: EditCommentComponent
+      },
+      {
+        path: ':commentId/:replyId',
+        component: EditCommentComponent
+      }
+    ]
   }
 
 ];

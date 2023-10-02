@@ -24,8 +24,6 @@ export class HomePagComponent implements OnInit {
     setTimeout(() => {
       this.selectedPostId = postId;
       this.selectedUserId = userId;
-      console.log(this.selectedPostId);
-      console.log(this.selectedUserId);
       this.modal.showModal = true;
     }, 400)
   }
@@ -145,6 +143,13 @@ export class HomePagComponent implements OnInit {
 
   }
 
+
+  deletePost(postId: number){
+    const conferma = window.confirm('Vuoi eliminare questo Post? \n tutti i dati andranno persi');
+    this.http.deletePost(postId).subscribe()
+    alert('Post eliminato ora puoi tornare alla home');
+    window.location.reload();
+  }
 
 
 

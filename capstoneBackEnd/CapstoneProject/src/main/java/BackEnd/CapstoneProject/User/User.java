@@ -1,8 +1,10 @@
 package BackEnd.CapstoneProject.User;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -70,7 +72,7 @@ public class User implements UserDetails {
 	@Column(length = 16)
 	private String genere;
 	@Column(length = 128)
-	private String Citta;
+	private String citta;
 	@Enumerated(EnumType.STRING)
 	private Ruolo role;
 
@@ -80,10 +82,10 @@ public class User implements UserDetails {
 	private LocalDate dataDiNascita;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private LocalDate dataRegistrazione;
+	private LocalDateTime dataRegistrazione;
 
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
-	private LocalDate dataUltimeModifiche;
+	private LocalDateTime dataUltimeModifiche;
 
 	@ManyToMany
 	@JoinTable(name = "utenti_post", joinColumns = @JoinColumn(name = "user_user_id"), inverseJoinColumns = @JoinColumn(name = "post_post_id"))
@@ -102,7 +104,7 @@ public class User implements UserDetails {
 	private Set<User> followers = new HashSet<>();
 
 	public User(String nome, String cognome, String username, String email, String password, Ruolo role,
-			LocalDate dataRegistrazione) {
+			LocalDateTime dataRegistrazione) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.username = username;

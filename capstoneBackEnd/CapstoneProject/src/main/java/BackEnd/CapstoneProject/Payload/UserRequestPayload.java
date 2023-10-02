@@ -1,6 +1,7 @@
 package BackEnd.CapstoneProject.Payload;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -29,12 +30,13 @@ public class UserRequestPayload {
 	private String email;
 	@NotNull(message = "La password è obbligatoria")
 	private String password;
-	private String Bio;
+	private String bio;
 	@Column(length = 16)
 	private String genere;
 	@Column(length = 128)
-	private String Citta;
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
+	private String citta;
+	private String profileImageUrl;
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDate dataDiNascita;
 	private Ruolo role;
 }

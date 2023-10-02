@@ -112,8 +112,10 @@ public class ReplyService {
 		return replyRepo.findById(RepliesId).orElseThrow(() -> new NotFoundException(RepliesId));
 	}
 
-	public Reply findByIdAndUpdate(UUID RepliesId, Reply body) throws NotFoundException {
+	public Reply findByIdAndUpdate(UUID RepliesId, ReplyDTO body) throws NotFoundException {
 		Reply found = this.findById(RepliesId);
+		found.setContent(body.getContent());
+		found.setDataCreazione(LocalDateTime.now());
 		return replyRepo.save(found);
 	}
 
