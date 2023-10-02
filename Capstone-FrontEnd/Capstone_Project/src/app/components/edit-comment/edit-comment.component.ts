@@ -33,7 +33,7 @@ export class EditCommentComponent implements OnInit {
   currentUser: any;
   commentId: number | any;
   replyId: number | any;
-  comment: any;
+  comment: any = {};
   userInfo: any;
   formattedDate: string = '';
 
@@ -43,7 +43,6 @@ export class EditCommentComponent implements OnInit {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.commentId = params.get('commentId');
-      console.log(this.commentId);
       this.replyId = params.get('replyId');
 
       if (this.commentId) {
@@ -96,7 +95,7 @@ export class EditCommentComponent implements OnInit {
         (responseMessage: string) => {
           alert('Commento Modificato ✅')
           window.location.reload();
-
+          this.router.navigate(['/home'])
         },
         (error) => {
           console.error(error);

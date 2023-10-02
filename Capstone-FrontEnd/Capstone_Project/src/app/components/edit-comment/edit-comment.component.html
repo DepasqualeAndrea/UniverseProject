@@ -25,13 +25,13 @@
         <div class="d-flex text-light justify-content-center align-items-baseline gap-3 mt-2">
           <div>
             <div class="inputbox">
-              <input type="text" name="content" id="content" [(ngModel)]="commentContent" required>
+              <input type="text" name="content" id="content" [(ngModel)]="comment!.content!" required>
               <span>Commenta</span>
               <i></i>
             </div>
           </div>
           <div>
-            <button type="submit" class="bi bi-send-fill btn p-2" [disabled]="!commentContent" (click)="edit(comment.commentId, comment.repliesId, form)"></button>
+            <button type="submit" class="bi bi-send-fill btn p-2" (click)="edit(comment.commentId, comment.repliesId, form)"></button>
           </div>
           <div>
             <button type="button" class="btn bi bi-door-closed p-2 border-1 mx-2" [routerLink]="['/home']">&nbsp;Annulla</button>
