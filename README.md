@@ -45,7 +45,7 @@ metodi per l'autenticazione (Post):
    <img width="1281" alt="Screenshot 2023-10-03 200758" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/9a126dcd-273d-4f1b-b674-d6881984b352">
    
    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
-<img width="1278" alt="Screenshot 2023-10-03 200807" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/29e1b63e-1b89-4162-88cc-6c8df971dafa">
+   <img width="1278" alt="Screenshot 2023-10-03 200807" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/29e1b63e-1b89-4162-88cc-6c8df971dafa">
   
   Utente => 🤩
   
