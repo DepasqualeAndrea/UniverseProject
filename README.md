@@ -41,7 +41,7 @@ Il nostro social network offre una serie di funzionalità essenziali:
 Per darvi un'idea più chiara delle funzionalità, ecco alcuni degli endpoint API principali:
 
 
-Jwt Auth => ⛔
+# Jwt Auth => ⛔
 metodi per l'autenticazione (Post):
 - `/auth/register`: Registrazione di un nuovo utente.
 - `/auth/login`: Login e generazione di token JWT.
