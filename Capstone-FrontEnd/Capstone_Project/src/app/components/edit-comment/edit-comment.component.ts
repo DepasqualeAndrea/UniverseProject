@@ -38,6 +38,7 @@ export class EditCommentComponent implements OnInit {
   formattedDate: string = '';
 
 
+
   constructor(private http: CrudService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
@@ -95,43 +96,29 @@ export class EditCommentComponent implements OnInit {
         (responseMessage: string) => {
           alert('Commento Modificato ✅')
           window.location.reload();
-          this.router.navigate(['/home'])
         },
         (error) => {
           console.error(error);
           alert('Non è stato possibile modificare il commento da te selezionato')
         }
       );
+      this.router.navigate(['/home'])
     } else if (replyId) {
 
       this.http.updateReply(replyId, requestBody).subscribe(
         (responseMessage: string) => {
           alert('Commento Modificato ✅')
-          window.location.reload();
-
         },
         (error) => {
           console.error(error);
           alert('Non è stato possibile modificare il commento da te selezionato')
         }
       )
+      this.router.navigate(['/home'])
     }
-  }
-  editReply(replyId: number, form: NgForm) {
-    const content = form.value.content;
-    const requestBody = { content: content };
-    this.http.updateReply(replyId, requestBody).subscribe(
-      (responseMessage: string) => {
-        alert('Commento Modificato ✅')
-        window.location.reload();
 
-      },
-      (error) => {
-        console.error(error);
-        alert('Non è stato possibile modificare il commento da te selezionato')
-      }
-    )
   }
+
 
 
 }

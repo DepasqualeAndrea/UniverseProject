@@ -90,6 +90,8 @@ public class CommentService {
 				replyDTO.setDataCreazione(reply.getDataCreazione());
 				replyDTO.setReplyId(reply.getRepliesId());
 				replyDTO.setUserReplyId(reply.getUsercommentId());
+				replyDTO.setUsername(reply.getUsername());
+				replyDTO.setUserReplyImage(reply.getUserReplyImage());
 				replyDTOs.add(replyDTO);
 			}
 			commentDTO.setReplies(replyDTOs);

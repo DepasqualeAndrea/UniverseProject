@@ -38,18 +38,15 @@
   transition: background-color 0.3s ease-in-out;
 }
 
-/* Aggiungi una media query per lo schermo più piccolo */
+
 @media (max-width: 768px) {
   #modale {
     display: flex;
     justify-content: center;
     align-items: center;
     right: 0;
-    /* Rimuovi la traslazione e inizia da sinistra */
     width: 100%;
-    /* Ora occupa l'intera larghezza dello schermo */
     background-color: rgba(0, 0, 0, 0.925);
-    /* Fai diventare il background più scuro */
   }
 }
 
@@ -97,7 +94,7 @@
   margin-left: 15px;
   font-weight: bold;
   color: #17ead1;
-  /* Colore dei testi */
+
 }
 
 a {
@@ -122,7 +119,7 @@ button {
   margin-right: 10px;
   background-color: #1b1e25;
   color: #17ead1;
-  /* Colore dei testi */
+
   transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
 }
 

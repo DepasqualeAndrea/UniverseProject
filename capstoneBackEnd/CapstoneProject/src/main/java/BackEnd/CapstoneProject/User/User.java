@@ -87,11 +87,11 @@ public class User implements UserDetails {
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
 	private LocalDateTime dataUltimeModifiche;
 
-	@ManyToMany
-	@JoinTable(name = "utenti_post", joinColumns = @JoinColumn(name = "user_user_id"), inverseJoinColumns = @JoinColumn(name = "post_post_id"))
+	@ManyToMany(cascade = CascadeType.REMOVE)
+	@JoinTable(name = "utenti_post",joinColumns = @JoinColumn(name = "user_user_id"), inverseJoinColumns = @JoinColumn(name = "post_post_id"))
 	private Set<Post> posts = new HashSet<>();
 
-	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true )
 	@JsonIgnore
 	private List<Comment> comment = new ArrayList<>();
 

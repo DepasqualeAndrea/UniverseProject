@@ -46,6 +46,8 @@ public class ReplyService {
 		reply.setDataCreazione(LocalDateTime.now());
 		reply.setUsercommentId(userId);
 		reply.setComment(comment);
+		reply.setUsername(userService.getCurrentUser().getUsername());
+		reply.setUserReplyImage(userService.getCurrentUser().getProfileImageUrl());
 		return replyRepo.save(reply);
 	}
 	@Transactional
@@ -60,9 +62,9 @@ public class ReplyService {
 			replyDTO.setDataCreazione(reply.getDataCreazione());
 			replyDTO.setLikeCount(reply.getLikeCount());
 			replyDTO.setLikedReplyByUsers(reply.getLikedReplyByUsers());
-			replyDTO.setUserReplyId(userService.getCurrentUser().getUserId());
-			replyDTO.setUsername(userService.getCurrentUser().getUsername());
-			replyDTO.setUserReplyImage(userService.getCurrentUser().getProfileImageUrl());
+			replyDTO.setUserReplyId(reply.getUsercommentId());
+			replyDTO.setUsername(reply.getUsername());
+			replyDTO.setUserReplyImage(reply.getUserReplyImage());
 			replyDTOs.add(replyDTO);
 		}
 

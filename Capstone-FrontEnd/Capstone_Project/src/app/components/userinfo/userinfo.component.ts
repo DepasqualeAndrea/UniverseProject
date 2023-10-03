@@ -34,6 +34,9 @@ export class UserinfoComponent implements OnInit {
   userPosts: any[] = [];
   userId!: number | any;
   followers: any[] = [];
+  isFollowingUser!: boolean;
+  currentUserId!: number;
+
 
   constructor(private http: CrudService, private route: ActivatedRoute, private authService: AuthService) { }
 
@@ -51,6 +54,20 @@ export class UserinfoComponent implements OnInit {
           this.userPosts.push(posts);
         };
 
+    });
+    this.authService.getCurrentUserInfo().subscribe(currentUser => {
+      this.currentUserId = currentUser.userId;
+      console.log(this.currentUserId)
+
+      // Ottenere l'utente visualizzato
+      this.http.getUserById(this.userId).subscribe(userInfo => {
+        this.User = userInfo;
+
+        // Verifica se l'utente corrente sta seguendo l'utente visualizzato
+        this.isFollowingUser = this.User.followers.some((follower: { userId: number }) => follower.userId === this.currentUserId);
+
+        // Ora hai determinato se stai seguendo l'utente visualizzato
+      });
     });
 
     this.authService.getCurrentUserInfo().subscribe(user =>{

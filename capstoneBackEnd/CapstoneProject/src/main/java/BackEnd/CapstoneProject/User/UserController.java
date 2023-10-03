@@ -27,12 +27,15 @@ import org.springframework.web.server.ResponseStatusException;
 import BackEnd.CapstoneProject.Exception.NotFoundException;
 import BackEnd.CapstoneProject.Exception.UUIDValidator;
 import BackEnd.CapstoneProject.Payload.UserRequestPayload;
+import BackEnd.CapstoneProject.Post.PostService;
 
 @RestController
 @RequestMapping("/user/utente")
 public class UserController {
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PostService postService;
 
 
 	@GetMapping
@@ -114,7 +117,9 @@ public class UserController {
 	@DeleteMapping("/{userId}")
 	// @PreAuthorize("hasAuthority('ADMIN')")
 	public ResponseEntity<String> deleteUtente(@PathVariable UUID userId) {
-		userService.findByIdAndDelete(userId);
-		return ResponseEntity.ok("Utente eliminato con successo.");
+	    userService.deleteUserAndReferences(userId);
+	    
+	    return ResponseEntity.ok("Utente eliminato con successo insieme ai suoi post.");
 	}
+
 }

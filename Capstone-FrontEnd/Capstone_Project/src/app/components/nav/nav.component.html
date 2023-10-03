@@ -9,43 +9,60 @@
             <img alt="alt" *ngIf="currentUser" src="{{currentUser.profileImageUrl}}" class="social-card-user-image" />
           </div>
           <div>
-            <h4 class="nav-text mt-4" *ngIf="currentUser">🫶🏻 {{currentUser.username}}</h4>
+            <p class="nav-text mt-2 " *ngIf="currentUser">{{currentUser.username}}</p>
           </div>
         </li>
       </div>
       <div class="sideIcon">
         <li routerLinkActive [routerLink]="['/home']">
           <a>
-            <i class="bi bi-house-heart"></i>
-            <span class="nav-text">Home</span>
+            <div class="d-flex justify-content-center align-items-center">
+              <div>
+                <i class="bi bi-house"></i>
+              </div>
+              <div>
+                <span class="nav-text text-center">Home</span>
+              </div>
+            </div>
           </a>
         </li>
 
         <li class="has-subnav bisearch">
           <a>
-            <i class="bi bi-search"></i>
-            <span class="nav-text">Search</span>
+            <div class="d-flex justify-content-center align-items-center">
+              <div>
+                <i class="bi bi-github"></i>
+              </div>
+              <div>
+                <span class="nav-text text-center">Git Hub</span>
+              </div>
+            </div>
           </a>
         </li>
 
         <li class="has-subnav">
           <a>
-            <i class="bi bi-envelope-at"></i>
-            <span class="nav-text">Messages</span>
-          </a>
-        </li>
-
-        <li>
-          <a>
-            <i class="bi bi-heart"></i>
-            <span class="nav-text">Direct</span>
+            <div class="d-flex justify-content-center align-items-center">
+              <div>
+                <i class="bi bi-linkedin"></i>
+              </div>
+              <div>
+                <span class="nav-text text-center">Linkedin</span>
+              </div>
+            </div>
           </a>
         </li>
 
         <li>
           <a (click)="openModal()">
-            <i class="bi bi-plus-square"></i>
-            <span class="nav-text">Create</span>
+            <div class="d-flex justify-content-center align-items-center">
+              <div>
+                <i class="bi bi-plus-square"></i>
+              </div>
+              <div>
+                <span class="nav-text text-center">Crea</span>
+              </div>
+            </div>
           </a>
         </li>
       </div>

@@ -10,31 +10,36 @@
           <img [src]="userPostInfo?.profileImageUrl" class="social-card-user-image" loading="lazy" />
           <a class="social-card-user-name" *ngIf="userPostInfo">{{userPostInfo?.username}}</a>
         </div>
-        <div>
-          <div class="dropdown">
-            <button class="btn three-dots" type="button" data-bs-toggle="dropdown" aria-expanded="true">
-              <i class="bi bi-three-dots"></i>
-            </button>
-            <ul class="dropdown-menu">
-              <li *ngIf="currentUser?.userId === postUserIdVerify?.userId">
-                <button class="dropdown-item p-1" type="button" [routerLink]="['/editPost', this.selectedPostId]">
-                  <i class="bi bi-pencil-square mx-2 p-1"></i>Edit
-                </button>
-              </li>
-              <li *ngIf="currentUser?.userId === postUserIdVerify?.userId">
-                <button class="dropdown-item p-1" type="button" (click)="deletePost(this.selectedPostId)">
-                  <i class="bi bi-trash3 mx-2 p-1"></i>Delete
-                </button>
-              </li>
-              <li>
-                <button class="dropdown-item p-1" type="button">
-                  <i class="bi bi-bookmark mx-2 p-1"></i>Add Favourite
-                </button>
-              </li>
-            </ul>
-
+        <div class="d-flex justify-content-center align-items-center gap-3">
+          <div>
+            <div class="dropdown">
+              <button class="btn three-dots-btn" type="button" data-bs-toggle="dropdown" aria-expanded="true">
+                <i class="bi bi-three-dots"></i>
+              </button>
+              <ul class="dropdown-menu">
+                <li *ngIf="currentUser?.userId === postUserIdVerify?.userId">
+                  <button class="dropdown-item p-1" type="button" [routerLink]="['/editPost', this.selectedPostId]">
+                    <i class="bi bi-pencil-square mx-2 p-1"></i>Edit
+                  </button>
+                </li>
+                <li *ngIf="currentUser?.userId === postUserIdVerify?.userId">
+                  <button class="dropdown-item p-1" type="button" (click)="deletePost(this.selectedPostId)">
+                    <i class="bi bi-trash3 mx-2 p-1"></i>Delete
+                  </button>
+                </li>
+                <li>
+                  <button class="dropdown-item p-1" type="button">
+                    <i class="bi bi-bookmark mx-2 p-1"></i>Add Favourite
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="btn-close text-light" >
+            <i class="btn btn-close" id="close" (click)="closeModal()"></i>
           </div>
         </div>
+
       </div>
     </div>
     <hr class="w-100">
@@ -65,15 +70,15 @@
                         <i class="bi bi-three-dots-vertical"></i>
                       </button>
                       <ul class="dropdown-menu">
-                        <p>
+                        <li>
                           <button class="dropdown-item p-2" type="button"
                             [routerLink]="['/editComment', { commentId: comment.commentId }]"><i
                               class="bi bi-pencil-square mx-2 p-2 my-2"></i>Edit</button>
-                        </p>
-                        <p>
+                        </li>
+                        <li>
                           <button class="dropdown-item p-2" type="button" (click)="deleteComment(comment.commentId)"><i
                               class="bi bi-trash3 mx-2 my-2 p-2"></i>Delete</button>
-                        </p>
+                        </li>
                       </ul>
                     </div>
                   </div>
@@ -84,7 +89,7 @@
                   <li>
                     <div class="d-flex justify-content-start align-items-start gap-3">
                       <div class="comment-avatar">
-                        <img src="{{reply.userReplyImage}}" alt=""
+                        <img src="{{reply.userReplyImage}}" alt="" loading="lazy"
                           [routerLink]="reply?.userReplyId === currentUser?.userId ? '/user' : ['/userInfo', reply.userReplyId]">
                       </div>
                       <div class="comment-box">

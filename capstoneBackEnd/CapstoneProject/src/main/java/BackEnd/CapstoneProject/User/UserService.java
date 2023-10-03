@@ -21,6 +21,10 @@ import BackEnd.CapstoneProject.Cloudinary.CloudinaryService;
 import BackEnd.CapstoneProject.Exception.NotFoundException;
 import BackEnd.CapstoneProject.Exception.UserNotFoundException;
 import BackEnd.CapstoneProject.Payload.UserRequestPayload;
+import BackEnd.CapstoneProject.Post.Post;
+import BackEnd.CapstoneProject.Post.PostRepository;
+import BackEnd.CapstoneProject.comments.Comment;
+import BackEnd.CapstoneProject.comments.CommentRepo;
 import BackEnd.CapstoneProject.reply.Reply;
 import BackEnd.CapstoneProject.reply.ReplyDTO;
 import jakarta.transaction.Transactional;
@@ -30,10 +34,13 @@ import jakarta.transaction.Transactional;
 public class UserService {
 	private final UserRepo userRepository;
 	private final CloudinaryService cloudinaryService;
+	private final PostRepository postRepo;
+	private final CommentRepo commentRepo;
 
-	public UserService(UserRepo userRepository, CloudinaryService cloudinaryService) {
+	public UserService(UserRepo userRepository,PostRepository postRepo,CommentRepo commentRepo ,CloudinaryService cloudinaryService) {
 		this.userRepository = userRepository;
-
+		this.commentRepo = commentRepo;
+		this.postRepo = postRepo;
 		this.cloudinaryService = cloudinaryService;
 	}
 
@@ -128,10 +135,35 @@ public class UserService {
 	}
 
 	@Transactional
-	public void findByIdAndDelete(UUID id) throws NotFoundException {
-		User found = this.findById(id);
-		userRepository.delete(found);
+	public void deleteUserAndReferences(UUID userId) {
+	    // Trova l'utente da eliminare
+	    User userToDelete = userRepository.findById(userId).orElse(null);
+
+	    if (userToDelete != null) {
+	        // Elimina tutti i post associati all'utente
+	        for (Post post : userToDelete.getPosts()) {
+	            // Elimina tutti i commenti associati al post
+	            for (Comment comment : post.getComments()) {
+	                commentRepo.delete(comment);
+	            }
+	            postRepo.delete(post);
+	        }
+
+	        // Rimuovi l'utente dalle liste dei "follower" degli altri utenti
+	        for (User follower : userToDelete.getFollowers()) {
+	            follower.getFollowing().remove(userToDelete);
+	        }
+
+	        // Rimuovi l'utente dalle liste dei "following" degli altri utenti
+	        for (User following : userToDelete.getFollowing()) {
+	            following.getFollowers().remove(userToDelete);
+	        }
+
+	        // Elimina l'utente
+	        userRepository.delete(userToDelete);
+	    }
 	}
+
 	
 
 	@Transactional

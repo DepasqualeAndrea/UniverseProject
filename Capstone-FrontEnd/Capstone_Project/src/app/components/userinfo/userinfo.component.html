@@ -9,15 +9,21 @@
         </div>
         <div class="profile-card__cnt js-profile-cnt">
           <div class="profile-card__name">{{User?.nome}} {{User?.cognome}}</div>
-          <div class="profile-card__name mb-3">@{{User?.username}}</div>
-          <div class="profile-card__txt"><strong>voglio vivere con il sole in fronte </strong></div>
+          <div class="profile-card__name mb-4">@{{User?.username}}</div>
           <div class="profile-card-loc">
             <span class="profile-card-loc__txt">
-              ciao
+             Attualmente a {{User?.citta}} /
             </span>
+            <span class="profile-card-loc__txt">
+              Nato il: {{User?.dataDiNascita}}
+             </span>
+            <hr class="my-4">
           </div>
+          <h6 class="text-start">Bio:</h6>
+          <div class="profile-card__txt text-start"><strong>{{User?.bio}}</strong></div>
+          <hr class="my-1">
           <div class="profile-card-ctr" >
-            <button class="profile-card__button button--orange"*ngIf="currentUser" (click)="toggleFollowing(User?.userId, currentUser?.userId)">Follow</button>
+            <button class="profile-card__button button--orange" (click)="toggleFollowing(User?.userId, currentUser?.userId)">{{ isFollowingUser ? 'Segui già' :'Segui'  }}</button>
           </div>
         </div>
       </div>
@@ -45,24 +51,14 @@
 
 <div class="container-fluid d-flex flex-column justify-content-center">
   <div class="profile-card-inf">
-    <div class="profile-card-inf__item" *ngFor="let userPost of userPosts; let i = index">
-      <div class="profile-card-inf__title">{{ userPosts[i].followers }}</div>
-      <div class="profile-card-inf__txt">Followers</div>
-    </div>
-
-    <!--<div class="profile-card-inf__item">
-      <div class="profile-card-inf__title">65</div>
-      <div class="profile-card-inf__txt">Following</div>
-    </div>-->
-    <div class="profile-card-inf__item">
-      <div class="profile-card-inf__title"></div><!--{{userPosts[i].posts}}-->
-      <div class="profile-card-inf__txt">Posts</div>
+    <div class="profile-card-inf__item" >
+      <div class="profile-card-inf__title">Followers {{ User?.followers?.length }}</div>
     </div>
 
     <div class="profile-card-inf__item">
-      <div class="profile-card-inf__title">85</div>
-      <div class="profile-card-inf__txt">Likes</div>
+      <div class="profile-card-inf__title">Posts {{ User?.posts?.length }}</div>
     </div>
+
   </div>
   <hr class="container">
 

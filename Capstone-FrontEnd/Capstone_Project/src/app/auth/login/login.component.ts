@@ -53,6 +53,8 @@ export class LoginComponent implements OnInit {
     formData.append('username', form.value.username);
     formData.append('email', form.value.email);
     formData.append('password', form.value.password);
+    formData.append('dataDiNascita', form.value.dataDiNascita);
+
 
     this.http.post('http://localhost:3001/auth/register', formData).subscribe(
       (response) => {

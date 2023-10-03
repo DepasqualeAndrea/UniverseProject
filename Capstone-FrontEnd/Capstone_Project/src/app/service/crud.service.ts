@@ -23,6 +23,10 @@ export class CrudService {
     return this.http.put(`${this.baseUrl}/utente/${userId}`, formData);
   }
 
+  deleteUser(userId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/utente/${userId}`)
+  }
+
 
   getPostById(postId: number): Observable<any> {
     return this.http.get<Post[]>(`${this.baseUrl}/post/${postId}`);
@@ -104,7 +108,6 @@ export class CrudService {
     return this.http.post(`${this.baseUrl}/utente/${userFollowedId}/follow/${userId}`, requestBody, { responseType: 'text' });
   }
 
-  //da usare⛔
   getFollowers(): Observable<any> {
     return this.http.get<any[]>(`${this.baseUrl}/utente/followers`);
   }

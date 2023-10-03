@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { PostInfo } from 'src/app/interface/post-info.interface';
@@ -43,7 +44,7 @@ export class UserProfileComponent implements OnInit {
   currentUser: any={};
   userPosts: any[] = [];
 
-  constructor(private http: CrudService, private authService: AuthService,) { }
+  constructor(private http: CrudService, private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -103,6 +104,17 @@ export class UserProfileComponent implements OnInit {
         }
       );
 
+  }
+
+  deleteUser(userId: number) {
+    const confirmed = window.confirm('Sei sicuro di voler eliminare il tuo Profilo? \nCosì facendo perderai tutti i dati e dovrai rieffettuare la registrazione, \nVuoi procedere?');
+
+    if (confirmed) {
+      this.http.deleteUser(userId).subscribe(() => {
+        localStorage.removeItem('token');
+        this.router.navigate(['/login']);
+      });
+    }
   }
 
 

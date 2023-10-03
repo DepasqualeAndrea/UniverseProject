@@ -150,4 +150,12 @@ public class PostService {
 		}
 	}
 
+	public void deletePostsByUserId(UUID userId) {
+        List<Post> postsToDelete = postRepo.findByUserId(userId);
+        for (Post post : postsToDelete) {
+            postRepo.delete(post);
+        }
+		
+	}
+
 }

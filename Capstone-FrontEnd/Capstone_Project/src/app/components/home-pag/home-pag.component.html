@@ -9,13 +9,13 @@ app
           <input class="form-control me-2 w-75 inpt" type="search" placeholder="Cerca utenti" aria-label="Search">
         </form>
         <h4 class="text-start mt-0 mb-3 suggeriti ms-3">Persone che potresti conoscere 🤝</h4>
-        <div class="slider">
+        <div class="slider mb-5">
           <div class="slide-track">
             <div class="slide d-flex justify-content-start align-items-start flex-column w-100"
               *ngFor="let users of suggestedUsers;">
               <div class="d-flex justify-content-center align-items-center flex-column gap-1">
-                <div>
-                  <img src="{{users.profileImageUrl}}" alt="" class="social-card-user-image-carousel" />
+                <div [routerLink]="['/userInfo', users.userId]">
+                  <img src="{{users.profileImageUrl}}" alt="" class="social-card-user-image-carousel" loading="lazy" />
                 </div>
                 <div [routerLink]="['/userInfo', users.userId]">
                   <span class="bi">{{users.username}}</span>

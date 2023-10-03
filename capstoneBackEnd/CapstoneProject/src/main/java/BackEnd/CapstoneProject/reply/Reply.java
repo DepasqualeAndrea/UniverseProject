@@ -41,7 +41,8 @@ public class Reply {
 	private String content;
 	private LocalDateTime dataCreazione;
 	private UUID usercommentId;
-
+	private String userReplyImage;
+	private String username;
 	@ManyToOne
 	@JsonIgnore
 	private Comment comment;
