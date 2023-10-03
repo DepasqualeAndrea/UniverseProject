@@ -3,6 +3,9 @@ Presentazione del Progetto Capstone
 
 Titolo del Progetto: Universe
 
+
+<img width="1279" alt="Screenshot 2023-10-03 200820" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/222e1754-c204-45b8-be14-809bf3d42048">
+
  Tecnologie Utilizzate
 
 - Angular: Un framework per la creazione di applicazioni web dinamiche e interattive.
@@ -53,6 +56,9 @@ metodi per l'autenticazione (Post):
   
   Metodi Get per gli utenti:
 - `/user/utente`: Recupero e aggiornamento del profilo utente, con la prerogativa di ottenere i dati dell'utente Loggato in quel momento.
+
+
+
 - `/user/utente/all`: Recupero e aggiornamento dei profili di tutti gli utenti filtrati, considerando la non presenza dell utente loggato, e aggiornando la lista in caso in cui qualcuno di questi utenti venisse "seguito" (uscendo dalla lista degli utenti).
 - `/user/utente/{userId}`: Recupero di tutti i profili seguiti dall'utente.
 - `/user/utente/followers`: Recupero dei profili "followers" del profilo stesso.
