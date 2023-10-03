@@ -41,7 +41,7 @@ Jwt Auth => ⛔
 metodi per l'autenticazione (Post):
 - `/auth/register`: Registrazione di un nuovo utente.
 - `/auth/login`: Login e generazione di token JWT.
-- 
+
    <img width="1281" alt="Screenshot 2023-10-03 200758" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/9a126dcd-273d-4f1b-b674-d6881984b352">
    
    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
