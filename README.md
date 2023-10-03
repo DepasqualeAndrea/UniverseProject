@@ -56,7 +56,7 @@ metodi per l'autenticazione (Post):
   Metodi Get per gli utenti:
 - `/user/utente`: Recupero e aggiornamento del profilo utente, con la prerogativa di ottenere i dati dell'utente Loggato in quel momento.
 
-
+<img width="1277" alt="Screenshot 2023-10-03 200842" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/767eaa88-06cf-4eb8-b7b1-11a13841ecfa">
 
 - `/user/utente/all`: Recupero e aggiornamento dei profili di tutti gli utenti filtrati, considerando la non presenza dell utente loggato, e aggiornando la lista in caso in cui qualcuno di questi utenti venisse "seguito" (uscendo dalla lista degli utenti).
 - `/user/utente/{userId}`: Recupero di tutti i profili seguiti dall'utente.
@@ -89,7 +89,8 @@ Scheda Tecnica del Progetto
 
 - **Gestione Multimediale**: Cloudinary è stato integrato per la gestione efficiente di immagini caricate dagli utenti.
 
-- **Gestione tecnica**: GitHub è stato utilizzato per salvaguardare i dati, mano mano che sviluppavo il progetto strutturando il tutto su branch diversi per dividere lavoro e progressione delle singole modifiche.
+- **Gestione tecnica**: GitHub è stato utilizzato per salvaguardare i dati, mano mano
+ che sviluppavo il progetto strutturando il tutto su branch diversi per dividere lavoro e progressione delle singole modifiche.
 
 ### Presentazione Grafica
 
