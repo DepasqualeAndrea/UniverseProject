@@ -51,7 +51,7 @@ metodi per l'autenticazione (Post):
    ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
  <img width="1278" alt="Screenshot 2023-10-03 200807" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/29e1b63e-1b89-4162-88cc-6c8df971dafa">
   
-  Utente => 🤩
+#  Utente => 🤩
   
   Metodi Get per gli utenti:
 - `/user/utente`: Recupero e aggiornamento del profilo utente, con la prerogativa di ottenere i dati dell'utente Loggato in quel momento.
