@@ -1,4 +1,3 @@
-
 # Titolo del Progetto: Universe
 
 <img width="1279" alt="Screenshot 2023-10-03 200820" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/222e1754-c204-45b8-be14-809bf3d42048">
