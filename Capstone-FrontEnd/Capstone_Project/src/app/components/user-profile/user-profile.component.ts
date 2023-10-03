@@ -108,10 +108,11 @@ export class UserProfileComponent implements OnInit {
 
     if (confirmed) {
       this.http.deleteUser(userId).subscribe(() => {
-        localStorage.removeItem('token');
-        this.router.navigate(['/login']);
+
       });
     }
+    localStorage.removeItem('token');
+    this.router.navigate(['/login']);
   }
 
 

@@ -60,13 +60,14 @@ app
                   <div class="card-posts">
                     <img src="{{post.postImageUrl}}" alt="">
                     <div class="overlay" (click)="openModal(post.postId, post.userId)"></div>
-                    <button class="card-btn"><i class="bi bi-heart" (click)="like(post.postId)"></i></button>
+                    <button class="card-btn" (click)="like(post.postId)"><i class="bi bi-heart"></i></button>
                   </div>
                 </div>
               </div>
 
               <div class="social-card-content pb-1">
                 <p class="likes text-light"><strong>{{post.likeCount}} like</strong></p>
+                <p class="likes text-light" id="data"> {{post.formattedDate}}</p>
                 <hr class="mb-2">
                 <p class="text-light"><a class="social-card-content-user">Descrizione 🖊️.. &nbsp;</a> &nbsp;
                   {{post.description}}<a class="hashtag"></a>

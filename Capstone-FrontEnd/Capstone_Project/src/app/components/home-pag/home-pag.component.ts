@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { format } from 'date-fns';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CrudService } from 'src/app/service/crud.service';
@@ -62,6 +63,7 @@ export class HomePagComponent implements OnInit {
   isCurrentUserPost: boolean = false;
   currentUserId: any;
   commentInput: string = '';
+  formattedDate: string = '';
 
   constructor(private http: CrudService, private authService: AuthService) { }
 
@@ -69,14 +71,19 @@ export class HomePagComponent implements OnInit {
   ngOnInit(): void {
     this.http.getAllUsersPosts().subscribe(posts => {
       this.post = posts.content;
+      console.log(this.post);
       const userIds = this.post.map(post => post.userId);
       const userObservables = userIds.map(userId => this.http.getUserById(userId));
+
+
 
       forkJoin(userObservables).subscribe(users => {
         this.post.forEach((post, index) => {
           const user = users[index];
           post.userImage = user.profileImageUrl;
           post.username = user.username;
+
+          post.formattedDate = format(new Date(post.datacreazione), 'dd MMM yyyy');
         });
       });
 
