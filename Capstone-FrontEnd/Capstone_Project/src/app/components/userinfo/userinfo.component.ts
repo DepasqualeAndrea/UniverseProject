@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CrudService } from 'src/app/service/crud.service';
 
@@ -58,15 +58,9 @@ export class UserinfoComponent implements OnInit {
     this.authService.getCurrentUserInfo().subscribe(currentUser => {
       this.currentUserId = currentUser.userId;
       console.log(this.currentUserId)
-
-      // Ottenere l'utente visualizzato
       this.http.getUserById(this.userId).subscribe(userInfo => {
         this.User = userInfo;
-
-        // Verifica se l'utente corrente sta seguendo l'utente visualizzato
         this.isFollowingUser = this.User.followers.some((follower: { userId: number }) => follower.userId === this.currentUserId);
-
-        // Ora hai determinato se stai seguendo l'utente visualizzato
       });
     });
 

@@ -1,11 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { PostInfo } from 'src/app/interface/post-info.interface';
-import { Post } from 'src/app/interface/post.interface';
 import { CrudService } from 'src/app/service/crud.service';
 
 
@@ -41,7 +38,7 @@ export class UserProfileComponent implements OnInit {
   selectedFile: File | null = null;
   sub!: Subscription
   followingsUsers: any[] = [];;
-  currentUser: any={};
+  currentUser: any = {};
   userPosts: any[] = [];
 
   constructor(private http: CrudService, private authService: AuthService, private router: Router) { }
@@ -93,16 +90,16 @@ export class UserProfileComponent implements OnInit {
     formData.append('genere', form.value.genere);
     formData.append('citta', form.value.citta);
     formData.append('dataDiNascita', form.value.dataDiNascita);
-      this.http.updateUser(this.currentUser.userId, formData).subscribe(
-        (response) => {
-          console.log('Profilo Modificato Correttamente', response);
-          alert('Profilo Modificato Con Successo');
-          window.location.reload();
-        },
-        (error) => {
-          console.error('Errore durante le modifiche del profilo', error);
-        }
-      );
+    this.http.updateUser(this.currentUser.userId, formData).subscribe(
+      (response) => {
+        console.log('Profilo Modificato Correttamente', response);
+        alert('Profilo Modificato Con Successo');
+        window.location.reload();
+      },
+      (error) => {
+        console.error('Errore durante le modifiche del profilo', error);
+      }
+    );
 
   }
 

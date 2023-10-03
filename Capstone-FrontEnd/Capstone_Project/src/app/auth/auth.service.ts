@@ -18,7 +18,7 @@ export class AuthService {
   user$ = this.authSubj.asObservable();
   timeoutLogout: any;
 
-  constructor(private http: HttpClient, private router: Router, ) {}
+  constructor(private http: HttpClient, private router: Router,) { }
 
   setToken(token: string) {
     this.token = token;
@@ -50,48 +50,48 @@ export class AuthService {
   }
 
   restore() {
-      const user = localStorage.getItem('user');
-      if (!user) {
-          return;
-      }
-      const userData: Data = JSON.parse(user);
-      if (this.jwtHelper.isTokenExpired(userData.accessToken)) {
+    const user = localStorage.getItem('user');
+    if (!user) {
+      return;
+    }
+    const userData: Data = JSON.parse(user);
+    if (this.jwtHelper.isTokenExpired(userData.accessToken)) {
 
-          return;
-      }
-      this.authSubj.next(userData);
-      this.autoLogout(userData);
+      return;
+    }
+    this.authSubj.next(userData);
+    this.autoLogout(userData);
   }
 
   signup(data: {
-      image: File;
-      nome: string;
-      cognome: string;
-      username: string;
-      email: string;
-      password: string;
+    image: File;
+    nome: string;
+    cognome: string;
+    username: string;
+    email: string;
+    password: string;
   }) {
-      return this.http.post(`${this.baseURL}auth/register`, data);
+    return this.http.post(`${this.baseURL}auth/register`, data);
   }
 
   logout() {
-      this.authSubj.next(null);
-      localStorage.removeItem('user');
-      this.router.navigate(['/']);
-      if (this.timeoutLogout) {
-          clearTimeout(this.timeoutLogout);
-      }
+    this.authSubj.next(null);
+    localStorage.removeItem('user');
+    this.router.navigate(['/']);
+    if (this.timeoutLogout) {
+      clearTimeout(this.timeoutLogout);
+    }
   }
 
   autoLogout(data: Data) {
-      const expirationDate = this.jwtHelper.getTokenExpirationDate(
-          data.accessToken
-      ) as Date;
-      const expirationMilliseconds =
-          expirationDate.getTime() - new Date().getTime();
-      this.timeoutLogout = setTimeout(() => {
-          this.logout();
-      }, expirationMilliseconds);
+    const expirationDate = this.jwtHelper.getTokenExpirationDate(
+      data.accessToken
+    ) as Date;
+    const expirationMilliseconds =
+      expirationDate.getTime() - new Date().getTime();
+    this.timeoutLogout = setTimeout(() => {
+      this.logout();
+    }, expirationMilliseconds);
   }
 
 
@@ -99,18 +99,18 @@ export class AuthService {
 
 
   private errors(err: any) {
-      switch (err.error) {
-          case 'Email already exists':
-              return throwError('Utente già presente');
-              break;
+    switch (err.error) {
+      case 'Email already exists':
+        return throwError('Utente già presente');
+        break;
 
-          case 'Email format is invalid':
-              return throwError('Formato mail non valido');
-              break;
+      case 'Email format is invalid':
+        return throwError('Formato mail non valido');
+        break;
 
-          default:
-              return throwError('Errore nella chiamata');
-              break;
-      }
+      default:
+        return throwError('Errore nella chiamata');
+        break;
+    }
   }
 }

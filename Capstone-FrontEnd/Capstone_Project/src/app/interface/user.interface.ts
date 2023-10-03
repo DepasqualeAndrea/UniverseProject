@@ -1,5 +1,3 @@
-import { SafeUrl } from "@angular/platform-browser"
-
 export interface User {
   userId: number
   nome: string,

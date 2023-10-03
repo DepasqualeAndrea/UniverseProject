@@ -292,7 +292,7 @@ div li {
     &__title {
       font-weight: 700;
       font-size: 20px;
-      color:#03e9f4;
+      color: #03e9f4;
     }
 
     &__txt {
@@ -679,17 +679,21 @@ input {
   height: 100%;
   cursor: pointer !important;
 }
-select{
+
+select {
   background-color: transparent;
   color: #03e9f4;
   background: transparent;
-  option{
-    color:#030b4a;
-    &:hover{
+
+  option {
+    color: #030b4a;
+
+    &:hover {
       color: #0a3f1c;
     }
   }
 }
+
 .transparent-input {
   background-color: transparent;
   border: 1px solid #03e9f4;

@@ -224,6 +224,7 @@ div li {
       transition-delay: .1s;
     }
   }
+
   &__container {
 
     @media screen and (max-width: 768px) {
@@ -232,6 +233,7 @@ div li {
     }
 
   }
+
   &__img {
     width: 150px;
     height: 150px;

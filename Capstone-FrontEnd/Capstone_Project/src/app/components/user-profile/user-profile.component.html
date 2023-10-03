@@ -12,11 +12,11 @@
           <div class="profile-card__name mb-4">@{{currentUser.username}}</div>
           <div class="profile-card-loc">
             <span class="profile-card-loc__txt">
-             Attualmente a {{currentUser.citta}} /
+              Attualmente a {{currentUser.citta}} /
             </span>
             <span class="profile-card-loc__txt">
               Nato il: {{currentUser.dataDiNascita}}
-             </span>
+            </span>
             <hr class="my-4">
           </div>
           <h6 class="text-start">Bio:</h6>
@@ -124,35 +124,44 @@
           <form #form="ngForm" (ngSubmit)="updateUser(form)" class="text-light" enctype="multipart/form-data">
             <div>
               <label for="nome">Nome</label>
-              <input name="nome" class="form-control transparent-input" id="nome" type="text" [(ngModel)]="currentUser.nome">
+              <input name="nome" class="form-control transparent-input" id="nome" type="text"
+                [(ngModel)]="currentUser.nome">
 
               <label for="cognome">Cognome</label>
-              <input name="cognome" class="form-control transparent-input" id="cognome" type="text" [(ngModel)]="currentUser.cognome">
+              <input name="cognome" class="form-control transparent-input" id="cognome" type="text"
+                [(ngModel)]="currentUser.cognome">
 
               <label for="username">Username</label>
-              <input name="username" class="form-control transparent-input" id="username" type="text" [(ngModel)]="currentUser.username">
+              <input name="username" class="form-control transparent-input" id="username" type="text"
+                [(ngModel)]="currentUser.username">
 
               <label for="bio">Bio</label>
-              <input name="bio" class="form-control transparent-input" id="bio" type="text" [(ngModel)]="currentUser.bio">
+              <input name="bio" class="form-control transparent-input" id="bio" type="text"
+                [(ngModel)]="currentUser.bio">
 
               <label for="genere">Genere:</label>
-              <select name="genere" class="form-control transparent-input" id="genere" [(ngModel)]="currentUser.genere" type="text">
+              <select name="genere" class="form-control transparent-input" id="genere" [(ngModel)]="currentUser.genere"
+                type="text">
                 <option value="uomo">Uomo</option>
                 <option value="donna">Donna</option>
               </select>
 
               <label for="citta">Città</label>
-              <input name="citta" class="form-control transparent-input" id="citta" type="citta" [(ngModel)]="currentUser.citta">
+              <input name="citta" class="form-control transparent-input" id="citta" type="citta"
+                [(ngModel)]="currentUser.citta">
 
               <label for="birthdate">Data Di Nascita</label>
-              <input name="dataDiNascita" class="form-control transparent-input" id="dataDiNascita" type="date" [(ngModel)]="currentUser.dataDiNascita">
+              <input name="dataDiNascita" class="form-control transparent-input" id="dataDiNascita" type="date"
+                [(ngModel)]="currentUser.dataDiNascita">
             </div>
             <div>
               <div class="d-flex justify-content-center align-items-center gap-3">
                 <div class="input-div my-4">
-                  <input class="input" type="file" accept="image/*" id="Image" name="Image" (change)="onFileSelected($event)">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round" stroke-linecap="round"
-                    viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor" class="icon">
+                  <input class="input" type="file" accept="image/*" id="Image" name="Image"
+                    (change)="onFileSelected($event)">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" stroke-linejoin="round"
+                    stroke-linecap="round" viewBox="0 0 24 24" stroke-width="2" fill="none" stroke="currentColor"
+                    class="icon">
                     <polyline points="16 16 12 12 8 16"></polyline>
                     <line y2="21" x2="12" y1="12" x1="12"></line>
                     <path d="M20.39 18.39A5 5 0 0 0 18 9h-1.26A8 8 0 1 0 3 16.3"></path>

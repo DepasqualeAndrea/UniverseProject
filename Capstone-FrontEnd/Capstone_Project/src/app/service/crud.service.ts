@@ -1,9 +1,9 @@
-import { HttpClient, HttpClientModule, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable } from 'rxjs';
 import { Post } from '../interface/post.interface';
-import { User } from '../interface/user.interface';
+
 
 
 @Injectable({
@@ -33,7 +33,7 @@ export class CrudService {
   }
 
 
-  modificaPost(formData: FormData , postId: number): Observable<any> {
+  modificaPost(formData: FormData, postId: number): Observable<any> {
     return this.http.put(`${this.baseUrl}/post/${postId}`, formData);
   }
 
@@ -76,18 +76,19 @@ export class CrudService {
   }): Observable<string> {
     return this.http.post(`${this.baseUrl}/comment/${postId}/create`, data, { responseType: 'text' });
   }
-  updateComment(commentId: number, data: {content: string}): Observable<string> {
-    return this.http.put(`${this.baseUrl}/comment/update/${commentId}`, data , { responseType: 'text' });
+  updateComment(commentId: number, data: { content: string }): Observable<string> {
+    return this.http.put(`${this.baseUrl}/comment/update/${commentId}`, data, { responseType: 'text' });
   }
   deleteComment(commentId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/comment/${commentId}`)
   }
   commentReply(commentId: number, data: {
-    content: string}): Observable<any> {
+    content: string
+  }): Observable<any> {
     return this.http.post(`${this.baseUrl}/reply/create/${commentId}`, data)
   }
-  updateReply(replyId: number, data: {content: string}): Observable<string> {
-    return this.http.put(`${this.baseUrl}/reply/update/${replyId}`, data , { responseType: 'text' });
+  updateReply(replyId: number, data: { content: string }): Observable<string> {
+    return this.http.put(`${this.baseUrl}/reply/update/${replyId}`, data, { responseType: 'text' });
   }
   deleteReply(replyId: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/reply/${replyId}`)
@@ -95,12 +96,12 @@ export class CrudService {
 
   likeComment(commentId: number): Observable<string> {
     const requestBody = { commentId: commentId };
-  return this.http.post(`${this.baseUrl}/comment/${commentId}/togglelike`, requestBody, { responseType: 'text' });
+    return this.http.post(`${this.baseUrl}/comment/${commentId}/togglelike`, requestBody, { responseType: 'text' });
   }
 
   likeReply(repliesId: number): Observable<string> {
     const requestBody = { repliesId: repliesId };
-  return this.http.post(`${this.baseUrl}/reply/${repliesId}/togglelike`, requestBody, { responseType: 'text' });
+    return this.http.post(`${this.baseUrl}/reply/${repliesId}/togglelike`, requestBody, { responseType: 'text' });
   }
 
   toggleFollowing(userId: number, userFollowedId: number): Observable<string> {

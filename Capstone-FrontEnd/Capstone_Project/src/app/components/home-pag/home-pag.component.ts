@@ -2,8 +2,6 @@ import { Component, Input, OnInit, } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
-import { User } from 'src/app/interface/user.interface';
-
 import { CrudService } from 'src/app/service/crud.service';
 
 
@@ -144,17 +142,12 @@ export class HomePagComponent implements OnInit {
   }
 
 
-  deletePost(postId: number){
+  deletePost(postId: number) {
     const conferma = window.confirm('Vuoi eliminare questo Post? \n tutti i dati andranno persi');
     this.http.deletePost(postId).subscribe()
     alert('Post eliminato ora puoi tornare alla home');
     window.location.reload();
   }
-
-
-
-
-
 
 
 

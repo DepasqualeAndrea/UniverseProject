@@ -1,11 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { format } from 'date-fns';
 import { Subscription, forkJoin } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { CrudService } from 'src/app/service/crud.service';
-import { ModalService } from 'src/app/service/modal.service';
-import { ReplyComponent } from '../reply/reply.component';
 import { NgForm } from '@angular/forms';
 
 @Component({

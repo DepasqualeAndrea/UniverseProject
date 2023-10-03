@@ -136,30 +136,28 @@ public class UserService {
 
 	@Transactional
 	public void deleteUserAndReferences(UUID userId) {
-	    // Trova l'utente da eliminare
 	    User userToDelete = userRepository.findById(userId).orElse(null);
 
 	    if (userToDelete != null) {
-	        // Elimina tutti i post associati all'utente
+	        
 	        for (Post post : userToDelete.getPosts()) {
-	            // Elimina tutti i commenti associati al post
+	         
 	            for (Comment comment : post.getComments()) {
 	                commentRepo.delete(comment);
 	            }
 	            postRepo.delete(post);
 	        }
 
-	        // Rimuovi l'utente dalle liste dei "follower" degli altri utenti
+	      
 	        for (User follower : userToDelete.getFollowers()) {
 	            follower.getFollowing().remove(userToDelete);
 	        }
 
-	        // Rimuovi l'utente dalle liste dei "following" degli altri utenti
+	      
 	        for (User following : userToDelete.getFollowing()) {
 	            following.getFollowers().remove(userToDelete);
 	        }
 
-	        // Elimina l'utente
 	        userRepository.delete(userToDelete);
 	    }
 	}
