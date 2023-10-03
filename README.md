@@ -83,7 +83,9 @@ Metodo Get Per i post:
 
 - `/user/cloudinary/upload`: Da qui parte la chiamata per la gestione cloud di tutte le immagini che andranno poi inserite nel Db.
 
-Scheda Tecnica del Progetto
+-------------------------------------------------------------------------------------------------------------------------------------
+
+# Scheda Tecnica del Progetto: => 👇🖊️
 
 - **Frontend**: Abbiamo utilizzato Angular per creare un'interfaccia utente moderna e reattiva. Il design è stato realizzato utilizzando Bootstrap per garantire una user experience intuitiva.
 
@@ -98,11 +100,9 @@ Scheda Tecnica del Progetto
 - **Gestione tecnica**: GitHub è stato utilizzato per salvaguardare i dati, mano mano
  che sviluppavo il progetto strutturando il tutto su branch diversi per dividere lavoro e progressione delle singole modifiche.
 
-### Presentazione Grafica
 
-[Aggiungi qui le immagini e gli screenshot dell'interfaccia utente, inclusi esempi di login e navigazione.]
+### Conclusioni: => ![TheEndSchittsCreekGIF](https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/c5597848-62b5-4c7c-962f-7781bb9e1959)
 
-Conclusioni:
 Questo progetto Capstone è stato un'esperienza di apprendimento straordinaria. Ho avuto l'opportunità di lavorare con tecnologie all'avanguardia e creare qualcosa di nuovo e stimolante. Oltretutto mi ha permesso di implementare ed apprendere molto più approfonditamente le tecnologie con la quale ho avuto modo di approcciarmi in questi mesi lavorativi. Sono altrettanto soddisfatto del risultato ottenuto, considerando la mole di idee che sono riuscito a far fruttare nel frattempo che il progetto progrediva.  
 
 
