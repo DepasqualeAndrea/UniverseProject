@@ -13,7 +13,7 @@
 
 ### Descrizione del progetto:
 
-Il nostro progetto Capstone ha l'obiettivo di creare un social network moderno e futuristico con un'interfaccia utente intuitiva e rilassante. Abbiamo scelto una combinazione di colori tra verde, blu e grigio per promuovere un'esperienza visiva rilassante e al contempo evocare una sensazione di futurismo.
+Questo Progetto ha l'obiettivo di creare un social network moderno e futuristico con un'interfaccia utente intuitiva e rilassante. Ho scelto una combinazione di colori tra verde, blu e grigio per promuovere un'esperienza visiva rilassante e al contempo evocare una sensazione di futurismo.
 
 ### Funzionalità Chiave
 
@@ -78,7 +78,7 @@ Metodo Get Per i post:
 ------------------------------------------------------------------------------------------------------------------------------------
 
 # Cloudinary:
-
+------------------------------------------------------------------------------------------------------------------------------------
 ![CloudGIF](https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/83e02417-0caf-4ff7-9cea-6987dc400541)
 
 -------------------------------------------------------------------------------------------------------------------------------------
@@ -103,7 +103,9 @@ Metodo Get Per i post:
 
 ----------------------------------------------------------------------------------------------------------------------------------------
 
-# Conclusioni: => ![TheEndSchittsCreekGIF](https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/c5597848-62b5-4c7c-962f-7781bb9e1959)
+# Conclusioni:
+----------------------------------------------------------------------------------------------------------------------------------------
+![TheEndSchittsCreekGIF](https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/c5597848-62b5-4c7c-962f-7781bb9e1959)
 
 Questo progetto Capstone è stato un'esperienza di apprendimento straordinaria. Ho avuto l'opportunità di lavorare con tecnologie all'avanguardia e creare qualcosa di nuovo e stimolante. Oltretutto mi ha permesso di implementare ed apprendere molto più approfonditamente le tecnologie con la quale ho avuto modo di approcciarmi in questi mesi lavorativi. Sono altrettanto soddisfatto del risultato ottenuto, considerando la mole di idee che sono riuscito a far fruttare nel frattempo che il progetto progrediva.  
 
