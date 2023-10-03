@@ -87,7 +87,6 @@
   top: 0;
   bottom: 0;
   z-index: -8;
-
   -moz-animation: move-background 150s linear infinite;
   -ms-animation: move-background 150s linear infinite;
   -o-animation: move-background 150s linear infinite;
@@ -96,8 +95,8 @@
 }
 
 .immagineBackground {
-  height: 70vh;
-  width: 70vh;
+  height: 50vh;
+  width: 50vh;
   position: absolute;
   z-index: -8;
   right: 20px;
