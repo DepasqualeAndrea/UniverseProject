@@ -75,7 +75,11 @@ Metodo Get Per i post:
  Metodo Post per i posts:
 - `/user/post/{postId}/togglelike`: Permette di mettere o togliere un like al post.
 
-# Cloudinary => ![CloudGIF](https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/d114d3a1-9e3e-4c9c-b250-1d42778dd21a)
+------------------------------------------------------------------------------------------------------------------------------------
+
+# Cloudinary => ![CloudGIF](https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/83e02417-0caf-4ff7-9cea-6987dc400541)
+
+-------------------------------------------------------------------------------------------------------------------------------------
 
 - `/user/cloudinary/upload`: Da qui parte la chiamata per la gestione cloud di tutte le immagini che andranno poi inserite nel Db.
 
