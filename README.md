@@ -68,11 +68,16 @@ metodi per l'autenticazione (Post):
 
 # Posts => ✉️
 
-Metodo Get Per i post
-- `/user/post/home`: Creazione e recupero dei post dell'utente.
-- `/user/comment`: Gestione dei follower e dei seguiti.
-- `/user/reply`: Ricerca di utenti, contenuti e hashtag.
-- `/user/cloudinary/upload`: Gestione delle notifiche in tempo reale.
+Metodo Get Per i post:
+
+- `/user/post/home`:Recupera tutti i post degli utenti, del database paginati per ordinati per data di creazione.
+  
+ Metodo Post per i posts:
+- `/user/post/{postId}/togglelike`: Permette di mettere o togliere un like al post.
+
+# Cloudinary => ![CloudGIF](https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/d114d3a1-9e3e-4c9c-b250-1d42778dd21a)
+
+- `/user/cloudinary/upload`: Da qui parte la chiamata per la gestione cloud di tutte le immagini che andranno poi inserite nel Db.
 
 Scheda Tecnica del Progetto
 
