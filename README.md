@@ -1,11 +1,9 @@
 
-Presentazione del Progetto Capstone
-
-Titolo del Progetto: Universe
+# Titolo del Progetto: Universe
 
 <img width="1279" alt="Screenshot 2023-10-03 200820" src="https://github.com/DepasqualeAndrea/UniverseProject/assets/128024931/222e1754-c204-45b8-be14-809bf3d42048">
 
- Tecnologie Utilizzate
+### Tecnologie Utilizzate
 
 - Angular: Un framework per la creazione di applicazioni web dinamiche e interattive.
 - Java Spring Boot: Un framework per lo sviluppo di applicazioni Java basate su microservizi.
@@ -14,7 +12,7 @@ Titolo del Progetto: Universe
 - Cloudinary: Un servizio di gestione delle risorse multimediali in cloud.
 - GitHub: Una piattaforma di sviluppo collaborativo per il versioning e il controllo del codice sorgente.
 
-Descrizione del progetto:
+### Descrizione del progetto:
 
 Il nostro progetto Capstone ha l'obiettivo di creare un social network moderno e futuristico con un'interfaccia utente intuitiva e rilassante. Abbiamo scelto una combinazione di colori tra verde, blu e grigio per promuovere un'esperienza visiva rilassante e al contempo evocare una sensazione di futurismo.
 
@@ -69,7 +67,7 @@ metodi per l'autenticazione (Post):
   Metodo Delete per eliminare un Utente:
 - `/user/utente/{userId}`: Metodo per eliminare un Utente tramite Id, con eliminazione di ogni referencies.
 
-Posts => ✉️
+# Posts => ✉️
 
 Metodo Get Per i post
 - `/user/post/home`: Creazione e recupero dei post dell'utente.
