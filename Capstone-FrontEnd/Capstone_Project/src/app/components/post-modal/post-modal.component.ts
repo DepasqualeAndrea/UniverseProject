@@ -18,6 +18,8 @@ export class PostModalComponent implements OnInit {
   loadBar = true;
   currentUser: any;
   imageUrl!: any;
+  showLoader = false;
+  postView = true;
 
   onFileSelected(event: any) {
     this.selectedFile = event.target.files[0];
@@ -47,6 +49,8 @@ export class PostModalComponent implements OnInit {
     const conferma = window.confirm('Sei sicuro di voler creare il post?');
 
     if (conferma) {
+      this.showLoader = true;
+      this.postView = false;
       const formData = new FormData();
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
@@ -56,15 +60,20 @@ export class PostModalComponent implements OnInit {
         (response: any) => {
           console.log('Post Pubblicato Correttamente', response);
           alert('Perfetto ora puoi tornare alla home');
-          window.location.reload();
-          this.loadBar = false;
+
+          setTimeout(() => {
+            this.showLoader = false;
+            this.postView = true;
+            window.location.reload();
+          }, 2000);
         },
         (error: any) => {
           console.error('Errore durante la pubblicazione del Post', error);
-          this.loadBar = false;
+          this.showLoader = false; // Nascondi il loader in caso di errore
         }
       );
     }
   }
+
 
 }

@@ -1,3 +1,4 @@
+<ng-container *ngIf="postView">
 <div id="overlay" (click)="closeModal()"></div>
 <div id="container" class="d-flex">
   <div id="modale" class="modal-container">
@@ -42,3 +43,17 @@
     </div>
   </div>
 </div>
+</ng-container>
+
+<ng-container *ngIf="showLoader">
+  <div class="buffering">
+    <div class="wrapper">
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="circle"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+      <div class="shadow"></div>
+    </div>
+  </div>
+</ng-container>

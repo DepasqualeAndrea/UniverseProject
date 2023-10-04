@@ -1,7 +1,8 @@
 <app-modal *ngIf="modal.showModal" (closeModalEvent)="closeModal()" [selectedPostId]="selectedPostId"></app-modal>
 app
 <app-nav></app-nav>
-<div class="feed container-fluid m-0 p-0 mb-5">
+<ng-container >
+  <div class="feed container-fluid m-0 p-0 mb-5">
   <div class="d-flex justify-content-center">
     <div class="contenitore-responsive mt-5 mb-5">
       <div class="feed-home-page">
@@ -102,3 +103,6 @@ app
     </div>
   </div>
 </div>
+</ng-container>
+
+
